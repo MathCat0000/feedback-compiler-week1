@@ -13,6 +13,8 @@ Open the app with `?demo=public` to see the same product flow using:
 - source IDs and review lanes;
 - manual handoff controls that only prepare text.
 
+The dataset browser is interactive in replay mode. Select `30 benchmark` or `8 casebook`, then click any case: its inputs load into the left panel and its paired structured fixture output appears in the review surface. `Load mixed set` shows the heterogeneous six-input walkthrough. These clicks do not call the model; they replay preserved synthetic evidence.
+
 The replay does not call Ollama, does not require a model download and does not send input to a hosted inference endpoint. It is evidence of the interface and workflow, not a hosted version of the model.
 
 ## URL after GitHub Pages deployment

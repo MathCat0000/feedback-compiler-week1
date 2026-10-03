@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { buildOutputSchema, buildUserPrompt, DEFAULT_MODEL, SYSTEM_PROMPT, validateOutput } from "./compiler.js";
-import demoCases from "./demoCases.json";
+import syntheticDataset from "../../feedback_compiler_synthetic_dataset_v1.json";
 import heterogeneousCasebook from "../../fixtures/feedback_compiler_heterogeneous_v1.json";
 
 const MASCOT_SRC = `${import.meta.env.BASE_URL}mascot-signal-buddy.png`;
@@ -76,6 +76,30 @@ const FLOW_CHANNELS = [
 ];
 
 const emptyResult = { requests: [], decisions: [], conflicts: [], duplicates: [], open_questions: [], deadlines: [], notes: [] };
+
+function sourceTextForIds(datasetCase, ids) {
+  const wanted = new Set(ids || []);
+  return (datasetCase.feedback || []).filter((entry) => wanted.has(entry.id)).map((entry) => entry.text).join(" / ");
+}
+
+function replayResultForCase(datasetCase) {
+  const expected = datasetCase.expected || emptyResult;
+  const sourceText = (ids, fallback) => sourceTextForIds(datasetCase, ids) || fallback;
+  const withText = (item, ids, fallback) => ({ ...item, text: item.text || sourceText(ids, fallback) });
+  return {
+    requests: (expected.requests || []).map((item) => withText(item, item.source_ids, "Review the supplied feedback")),
+    decisions: (expected.decisions || []).map((item) => withText(item, item.source_ids, "Decision recorded in the supplied feedback")),
+    conflicts: (expected.conflicts || []).map((item) => {
+      const sourceIds = item.source_ids || item.items?.flatMap((part) => part.source_ids || []) || [];
+      const items = item.items?.map((part) => withText(part, part.source_ids, "Conflicting guidance")) || sourceIds.map((sourceId) => ({ text: sourceText([sourceId], "Conflicting guidance"), source_ids: [sourceId] }));
+      return { ...item, topic: item.topic || "Conflicting guidance", source_ids: sourceIds, items };
+    }),
+    duplicates: (expected.duplicates || []).map((item) => ({ ...item, canonical: item.canonical || sourceText(item.source_ids, "Repeated feedback") })),
+    open_questions: (expected.open_questions || []).map((item) => withText(item, item.source_ids, "Clarify the unresolved point")),
+    deadlines: (expected.deadlines || []).map((item) => ({ ...item, text: item.text || "Deadline mentioned in feedback" })),
+    notes: [...(expected.notes || []), ...(expected.extension_note ? [expected.extension_note] : [])]
+  };
+}
 
 function sourceIdsFromFeedback(feedback) {
   return new Set(feedback.map((entry) => entry.id));
@@ -250,6 +274,7 @@ function WorkspaceApp() {
   const [progress, setProgress] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef([]);
+  const replayTimerRef = useRef(null);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -288,9 +313,22 @@ function WorkspaceApp() {
   useEffect(() => {
     if (!replayDemo) return undefined;
     loadHeterogeneousMix();
-    const timer = window.setTimeout(() => compileFeedback(), publicDemo ? 900 : 4200);
-    return () => window.clearTimeout(timer);
+    replayTimerRef.current = window.setTimeout(() => {
+      replayTimerRef.current = null;
+      compileFeedback();
+    }, publicDemo ? 900 : 4200);
+    return () => {
+      window.clearTimeout(replayTimerRef.current);
+      replayTimerRef.current = null;
+    };
   }, [replayDemo, publicDemo]);
+
+  function cancelPendingReplay() {
+    if (replayTimerRef.current) {
+      window.clearTimeout(replayTimerRef.current);
+      replayTimerRef.current = null;
+    }
+  }
 
   async function checkOllama(showError = true) {
     if (publicDemo) return true;
@@ -338,31 +376,34 @@ function WorkspaceApp() {
   }
 
   function loadHeterogeneousMix() {
+    cancelPendingReplay();
     setFeedback(HETEROGENEOUS_MIX.map((entry) => ({ ...entry })));
     setDatasetPack("casebook");
     setSelectedCaseId("MIXED");
-    setResult(null);
+    setResult(publicDemo ? RECORDING_RESULT : null);
     setError("");
     setHandoffNotice("");
-    setStatus("idle");
-    setStatusMessage(publicDemo ? "Public replay ready · no model call" : "Mixed input set loaded · 6 formats · short to transcript-length");
+    setStatus(publicDemo ? "success" : "idle");
+    setStatusMessage(publicDemo ? "Mixed replay ready · no model call" : "Mixed input set loaded · 6 formats · short to transcript-length");
   }
 
   function loadDatasetCase(datasetCase) {
+    cancelPendingReplay();
     const format = INPUT_FORMATS.some(([value]) => value === datasetCase.input_type) ? datasetCase.input_type : "custom";
-    setFeedback(datasetCase.feedback.map((entry) => ({ ...entry, format })));
+    setFeedback(datasetCase.feedback.map((entry) => ({ ...entry, format: entry.format || format })));
     setSelectedCaseId(datasetCase.case_id);
-    setResult(null);
+    setResult(publicDemo ? replayResultForCase(datasetCase) : null);
     setError("");
     setHandoffNotice("");
-    setStatus("idle");
-    setStatusMessage(`${datasetCase.case_id} loaded · ${datasetCase.feedback.length} input${datasetCase.feedback.length === 1 ? "" : "s"}`);
+    setStatus(publicDemo ? "success" : "idle");
+    setStatusMessage(publicDemo ? `${datasetCase.case_id} replay ready · no model call` : `${datasetCase.case_id} loaded · ${datasetCase.feedback.length} input${datasetCase.feedback.length === 1 ? "" : "s"}`);
   }
 
-  const visibleCases = datasetPack === "casebook" ? heterogeneousCasebook.cases : demoCases;
+  const visibleCases = datasetPack === "casebook" ? heterogeneousCasebook.cases : syntheticDataset.cases;
   const selectedCase = visibleCases.find((datasetCase) => datasetCase.case_id === selectedCaseId);
 
   function switchDatasetPack(pack) {
+    cancelPendingReplay();
     setDatasetPack(pack);
     setSelectedCaseId("");
     setResult(null);
@@ -388,9 +429,10 @@ function WorkspaceApp() {
     setResult(null);
     if (replayDemo) {
       await new Promise((resolve) => window.setTimeout(resolve, 700));
-      setResult(RECORDING_RESULT);
+      const selectedReplayCase = selectedCaseId !== "MIXED" ? visibleCases.find((datasetCase) => datasetCase.case_id === selectedCaseId) : null;
+      setResult(publicDemo && selectedReplayCase ? replayResultForCase(selectedReplayCase) : RECORDING_RESULT);
       setStatus("success");
-      setStatusMessage(publicDemo ? "Public replay complete · no model call" : `Recorded local result with ${model}`);
+      setStatusMessage(publicDemo ? `${selectedCaseId && selectedCaseId !== "MIXED" ? selectedCaseId : "Mixed set"} replay complete · no model call` : `Recorded local result with ${model}`);
       return;
     }
     try {
@@ -490,7 +532,7 @@ function WorkspaceApp() {
             <section className="input-panel panel">
               <div className="panel-heading"><div><span className="panel-kicker">01 / INPUT</span><h3>Feedback batch</h3></div><span className="memory-badge">{publicDemo ? "SYNTHETIC" : "IN MEMORY"}</span></div>
               <div className="privacy-toggle"><div className="privacy-lock"><span className="toggle-ui static-on" /><span><strong>{publicDemo ? "Replay mode" : "Privacy mode"}</strong><small>{publicDemo ? "Preserved output · no model request" : "Always in memory · no browser persistence"}</small></span></div><span className="info-mark" title={publicDemo ? "This page uses a fixed synthetic result." : "Input and output disappear when this tab is closed."}>i</span></div>
-              <div className="dataset-browser"><div className="dataset-browser-heading"><div><strong>{datasetPack === "casebook" ? "8-CASE CASEBOOK" : "30-CASE BENCHMARK"}</strong><span>{publicDemo ? "Fixed synthetic fixture · preserved local output" : datasetPack === "casebook" ? "Realistic shapes · separate from benchmark scores" : "Controlled failure modes · regression surface"}</span></div><b>{selectedCaseId || "CUSTOM"}</b></div><div className="dataset-pack-switch" role="group" aria-label="Input collection"><button className={datasetPack === "benchmark" ? "active" : ""} type="button" disabled={publicDemo} onClick={() => switchDatasetPack("benchmark")}>30 benchmark</button><button className={datasetPack === "casebook" ? "active" : ""} type="button" disabled={publicDemo} onClick={() => switchDatasetPack("casebook")}>8 casebook</button><button className="mixed-button" type="button" disabled={publicDemo} onClick={loadHeterogeneousMix}>Load mixed set</button></div><div className="case-grid">{visibleCases.map((datasetCase) => <button className={`case-card ${selectedCaseId === datasetCase.case_id ? "selected" : ""}`} type="button" disabled={publicDemo} key={datasetCase.case_id} title={`${datasetCase.title || datasetCase.input_type} · ${(datasetCase.primary_failure_mode || datasetCase.expected_rule_coverage || []).toString()}`} onClick={() => loadDatasetCase(datasetCase)}><span>{datasetCase.case_id}</span><small>{datasetCase.difficulty || (datasetCase.supported_now === "partial" ? "EXT" : "MIXED")}</small></button>)}</div>{selectedCase && <div className="dataset-case-meta"><strong>{selectedCase.title || selectedCase.input_type?.replaceAll("_", " ") || "Custom set"}</strong><span>{selectedCase.primary_failure_mode || `${selectedCase.input_type} · ${(selectedCase.expected_rule_coverage || []).join(" / ")}`} · {selectedCase.feedback.length} input{selectedCase.feedback.length === 1 ? "" : "s"}</span></div>}{selectedCaseId === "MIXED" && <div className="dataset-case-meta"><strong>Mixed input set</strong><span>Slack · email · meeting · ticket · multilingual · transcript · 6 inputs</span></div>}</div>
+              <div className="dataset-browser"><div className="dataset-browser-heading"><div><strong>{datasetPack === "casebook" ? "8-CASE CASEBOOK" : "30-CASE BENCHMARK"}</strong><span>{publicDemo ? "Click any case to load its input and paired structured output" : datasetPack === "casebook" ? "Realistic shapes · separate from benchmark scores" : "Controlled failure modes · regression surface"}</span></div><b>{selectedCaseId || "CUSTOM"}</b></div><div className="dataset-pack-switch" role="group" aria-label="Input collection"><button className={datasetPack === "benchmark" ? "active" : ""} type="button" onClick={() => switchDatasetPack("benchmark")}>30 benchmark</button><button className={datasetPack === "casebook" ? "active" : ""} type="button" onClick={() => switchDatasetPack("casebook")}>8 casebook</button><button className="mixed-button" type="button" onClick={loadHeterogeneousMix}>Load mixed set</button></div><div className="case-grid">{visibleCases.map((datasetCase) => <button className={`case-card ${selectedCaseId === datasetCase.case_id ? "selected" : ""}`} type="button" key={datasetCase.case_id} title={`${datasetCase.title || datasetCase.input_type} · ${(datasetCase.primary_failure_mode || datasetCase.expected_rule_coverage || []).toString()}`} onClick={() => loadDatasetCase(datasetCase)}><span>{datasetCase.case_id}</span><small>{datasetCase.difficulty || (datasetCase.supported_now === "partial" ? "EXT" : "MIXED")}</small></button>)}</div>{selectedCase && <div className="dataset-case-meta"><strong>{selectedCase.title || selectedCase.input_type?.replaceAll("_", " ") || "Custom set"}</strong><span>{selectedCase.primary_failure_mode || `${selectedCase.input_type} · ${(selectedCase.expected_rule_coverage || []).join(" / ")}`} · {selectedCase.feedback.length} input{selectedCase.feedback.length === 1 ? "" : "s"}</span></div>}{selectedCaseId === "MIXED" && <div className="dataset-case-meta"><strong>Mixed input set</strong><span>Slack · email · meeting · ticket · multilingual · transcript · 6 inputs</span></div>}</div>
               <div className="feedback-list">
                 {feedback.map((entry, index) => <div className="feedback-editor" key={`${entry.id}-${index}`}><div className="feedback-editor-top"><span className="feedback-index">{String(index + 1).padStart(2, "0")}</span><input className="source-input" aria-label={`Source ID ${index + 1}`} value={entry.id} readOnly={publicDemo} onChange={(event) => updateFeedback(index, "id", event.target.value)} /><input className="source-origin-input" aria-label={`Source origin ${index + 1}`} placeholder="Source / role" value={entry.source} readOnly={publicDemo} onChange={(event) => updateFeedback(index, "source", event.target.value)} /><select className="format-select" aria-label={`Input format ${index + 1}`} value={entry.format || "custom"} disabled={publicDemo} onChange={(event) => updateFeedback(index, "format", event.target.value)}>{INPUT_FORMATS.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select><button className="remove-button" type="button" disabled={publicDemo} aria-label={`Remove feedback ${index + 1}`} onClick={() => removeFeedback(index)}>×</button></div><div className="feedback-format-line"><span className="format-mark">{formatMark(entry.format)}</span><span>{formatLabel(entry.format)}</span><span>input {entry.text.length > 280 ? "long-form" : entry.text.length > 100 ? "medium" : "short"}</span></div><textarea aria-label={`Feedback ${index + 1}`} placeholder="Paste one feedback message, paragraph, ticket or transcript excerpt…" value={entry.text} readOnly={publicDemo} onChange={(event) => updateFeedback(index, "text", event.target.value)} /></div>)}
               </div>
@@ -502,7 +544,7 @@ function WorkspaceApp() {
 
             <section className="result-panel panel">
               <div className="panel-heading"><div><span className="panel-kicker">02 / OUTPUT</span><h3>Review surface</h3></div>{result && <button className="small-link" type="button" onClick={resetOutput}>Clear output</button>}</div>
-            {!result ? <div className="empty-result"><TypeMascot mood="idle" /><h3>Your compiled signal will appear here.</h3><p>Requests, decisions, conflicts, duplicates, questions and deadlines will be aggregated into a review board.</p><div className="empty-checks"><span>✓ Local model</span><span>✓ Schema output</span><span>✓ Human review</span></div></div> : <div className="result-content"><div className="result-summary"><TypeMascot mood="happy" compact /><div><strong>{publicDemo ? "Replay complete" : "Compilation complete"}</strong><span>{Object.values(result).flat().length} structured items · {publicDemo ? "preserved output" : "provenance checked"}</span></div></div><div className="export-toolbar"><span>Save structured result</span><button type="button" onClick={() => exportResult("txt")}>Download .txt</button><button type="button" onClick={() => exportResult("json")}>Download .json</button></div><OutputBoard result={result} /><DestinationActions result={result} onPrepare={prepareDestination} notice={handoffNotice} />{result.notes?.length > 0 && <section className="result-group blue"><div className="result-group-heading"><span className="result-dot" /><span>Notes</span></div>{result.notes.map((note) => <p className="result-note" key={note}>{note}</p>)}</section>}</div>}
+            {!result ? <div className="empty-result"><TypeMascot mood="idle" /><h3>Your compiled signal will appear here.</h3><p>Requests, decisions, conflicts, duplicates, questions and deadlines will be aggregated into a review board.</p><div className="empty-checks"><span>✓ Local model</span><span>✓ Schema output</span><span>✓ Human review</span></div></div> : <div className="result-content"><div className="result-summary"><TypeMascot mood="happy" compact /><div><strong>{publicDemo ? "Replay complete" : "Compilation complete"}</strong><span>{Object.values(result).flat().length} structured items · {publicDemo ? selectedCaseId && selectedCaseId !== "MIXED" ? "paired fixture output" : "preserved output" : "provenance checked"}</span></div></div><div className="export-toolbar"><span>Save structured result</span><button type="button" onClick={() => exportResult("txt")}>Download .txt</button><button type="button" onClick={() => exportResult("json")}>Download .json</button></div><OutputBoard result={result} /><DestinationActions result={result} onPrepare={prepareDestination} notice={handoffNotice} />{result.notes?.length > 0 && <section className="result-group blue"><div className="result-group-heading"><span className="result-dot" /><span>Notes</span></div>{result.notes.map((note) => <p className="result-note" key={note}>{note}</p>)}</section>}</div>}
             </section>
           </div>
         </section>
