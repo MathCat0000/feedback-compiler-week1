@@ -24,6 +24,8 @@ button { font: inherit; }
 .site-header { width: min(1180px, calc(100% - 64px)); height: 82px; margin: auto; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
 .recording-banner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 11px; color: var(--mint); border-bottom: 1px solid rgba(200, 241, 126, 0.22); font: 9px var(--mono); letter-spacing: 0.08em; }
 .recording-banner strong { color: var(--muted); font-weight: 400; letter-spacing: 0.02em; }
+.public-banner { color: #9fc8ff; border-bottom-color: rgba(159, 200, 255, 0.3); }
+.public-banner strong { color: #aeb8c8; }
 .wordmark { display: flex; align-items: center; gap: 11px; font: 500 14px var(--mono); letter-spacing: -0.06em; }
 .wordmark-mark { display: grid; place-items: center; width: 26px; height: 26px; color: var(--paper); background: var(--mint); font: 700 10px var(--mono); letter-spacing: -0.08em; }
 .site-nav { display: flex; gap: 31px; color: var(--muted); font-size: 12px; }
@@ -137,6 +139,7 @@ h1 em, h2 em { color: var(--mint); font-style: normal; }
 
 /* Live workspace */
 .status-button { border: 0; background: transparent; cursor: pointer; }
+.status-button:disabled { cursor: default; opacity: 1; }
 .status-button.offline { color: var(--coral); }
 .status-button.offline .status-dot { background: var(--coral); box-shadow: 0 0 0 4px rgba(251, 129, 111, 0.1); }
 .status-button.model-missing { color: var(--gold); }
@@ -201,6 +204,7 @@ h1 em, h2 em { color: var(--mint); font-style: normal; }
 .model-field { display: grid; gap: 7px; min-width: 0; }
 .model-field span { color: var(--dim); font: 8px var(--mono); letter-spacing: 0.1em; }
 .model-field input { width: 100%; padding: 11px 10px; border: 1px solid var(--line); color: var(--muted); }
+.model-field input:disabled { opacity: 1; cursor: default; }
 .compile-button { min-height: 38px; padding: 0 15px; border: 1px solid var(--mint); background: var(--mint); color: var(--paper); cursor: pointer; font: 10px var(--mono); white-space: nowrap; }
 .compile-button:hover { background: #e1ff9d; }
 .compile-button:disabled { cursor: wait; opacity: 0.55; }
@@ -323,6 +327,7 @@ h1 em, h2 em { color: var(--mint); font-style: normal; }
 .dataset-pack-switch { flex-wrap: wrap; }
 .dataset-pack-switch .mixed-button { margin-left: auto; color: var(--ink); border-color: var(--line); background: var(--paper-soft); }
 .dataset-pack-switch .mixed-button:hover { border-color: var(--mint); color: var(--mint); }
+.dataset-pack-switch button:disabled, .case-card:disabled, .remove-button:disabled { cursor: default; opacity: 0.68; }
 .feedback-editor-top { grid-template-columns: 25px 68px minmax(100px, 0.7fr) minmax(128px, 0.9fr) 22px; }
 .feedback-editor input, .feedback-editor select { min-width: 0; }
 .source-origin-input { color: var(--muted) !important; }

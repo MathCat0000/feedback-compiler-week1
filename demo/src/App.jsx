@@ -3,6 +3,8 @@ import { buildOutputSchema, buildUserPrompt, DEFAULT_MODEL, SYSTEM_PROMPT, valid
 import demoCases from "./demoCases.json";
 import heterogeneousCasebook from "../../fixtures/feedback_compiler_heterogeneous_v1.json";
 
+const MASCOT_SRC = `${import.meta.env.BASE_URL}mascot-signal-buddy.png`;
+
 const SAMPLE_FEEDBACK = [
   { id: "C-014", source: "Client", format: "slack_thread", text: "The hero feels too tall on mobile. Can we reduce the top padding before Friday?" },
   { id: "D-022", source: "Designer", format: "email_thread", text: "Keep the headline, but make the CTA more visible." },
@@ -128,7 +130,7 @@ function SourcePills({ ids }) {
 }
 
 function TypeMascot({ mood = "idle", compact = false }) {
-  return <div className={`type-mascot ${mood} ${compact ? "compact" : ""}`} aria-label="Feedback Compiler mascot" role="img"><img className="mascot-render" src="/mascot-signal-buddy.png" alt="" aria-hidden="true" /><span className="mascot-spark" aria-hidden="true">+</span></div>;
+  return <div className={`type-mascot ${mood} ${compact ? "compact" : ""}`} aria-label="Feedback Compiler mascot" role="img"><img className="mascot-render" src={MASCOT_SRC} alt="" aria-hidden="true" /><span className="mascot-spark" aria-hidden="true">+</span></div>;
 }
 
 function formatLabel(format) {
@@ -153,12 +155,12 @@ function DestinationActions({ result, onPrepare, notice }) {
   </div>;
 }
 
-function InputFlow() {
+function InputFlow({ publicDemo = false }) {
   return <section className="input-flow" aria-label="Heterogeneous inputs into local structured output">
     <div className="flow-copy"><span className="panel-kicker">ONE COMPILER / MANY SURFACES</span><strong>Different inputs.<br /><em>One local signal.</em></strong><span>Each source keeps its shape at intake. The compiler turns the fragments into the same reviewable output.</span></div>
     <div className="flow-rail flow-incoming"><span className="flow-label">INCOMING</span><div className="flow-channel-grid">{FLOW_CHANNELS.map(([format, label, mark, meta, tone]) => <div className={`flow-channel ${tone}`} key={format}><span className="flow-logo" aria-hidden="true">{mark}</span><span><strong>{label}</strong><small>{meta}</small></span></div>)}</div></div>
     <div className="flow-arrow" aria-hidden="true">→</div>
-    <div className="flow-core"><div className="flow-core-orbit"><img src="/mascot-signal-buddy.png" alt="" aria-hidden="true" /></div><strong>LOCAL COMPILER</strong><span>Ollama · schema · review</span><small>nothing leaves the laptop</small></div>
+    <div className="flow-core"><div className="flow-core-orbit"><img src={MASCOT_SRC} alt="" aria-hidden="true" /></div><strong>{publicDemo ? "PRESERVED REPLAY" : "LOCAL COMPILER"}</strong><span>{publicDemo ? "synthetic output · review" : "Ollama · schema · review"}</span><small>{publicDemo ? "no model request" : "nothing leaves the laptop"}</small></div>
     <div className="flow-arrow" aria-hidden="true">→</div>
     <div className="flow-rail flow-outgoing"><span className="flow-label">STRUCTURED OUT</span><div className="flow-output-stack"><div className="flow-output-item do"><span>DO</span><strong>Actions</strong></div><div className="flow-output-item decide"><span>DECIDE</span><strong>Decisions</strong></div><div className="flow-output-item clarify"><span>ASK</span><strong>Conflicts & questions</strong></div></div><small className="flow-output-note">source IDs stay attached</small></div>
   </section>;
@@ -190,7 +192,7 @@ const LINEAR_SOURCES = [["S", "Slack", "THREAD", "violet"], ["@", "Email", "THRE
 const LINEAR_DESTINATIONS = [["S", "Slack", "thread summary", "violet"], ["N", "Notion", "page block", "ink"], ["L", "Linear", "issue draft", "mint"], ["J", "Jira", "ticket draft", "coral"], ["@", "Email", "paste-ready message", "gold"]];
 
 function LinearMascot({ size = "normal" }) {
-  return <img className={`linear-mascot-image ${size}`} src="/mascot-signal-buddy.png" alt="" aria-hidden="true" />;
+  return <img className={`linear-mascot-image ${size}`} src={MASCOT_SRC} alt="" aria-hidden="true" />;
 }
 
 function LinearDemo() {
@@ -213,7 +215,10 @@ function LinearDemo() {
 }
 
 function WorkspaceApp() {
-  const recordingDemo = new URLSearchParams(window.location.search).get("demo") === "recording";
+  const demoMode = new URLSearchParams(window.location.search).get("demo");
+  const recordingDemo = demoMode === "recording";
+  const publicDemo = demoMode === "public";
+  const replayDemo = recordingDemo || publicDemo;
   const [feedback, setFeedback] = useState(SAMPLE_FEEDBACK);
   const [selectedCaseId, setSelectedCaseId] = useState("");
   const [datasetPack, setDatasetPack] = useState("benchmark");
@@ -254,22 +259,23 @@ function WorkspaceApp() {
   }, []);
 
   useEffect(() => {
-    if (recordingDemo) {
+    if (replayDemo) {
       setOllama({ state: "ready", version: "recording", models: [DEFAULT_MODEL] });
       return undefined;
     }
     checkOllama(false);
     return undefined;
-  }, [recordingDemo]);
+  }, [replayDemo]);
 
   useEffect(() => {
-    if (!recordingDemo) return undefined;
+    if (!replayDemo) return undefined;
     loadHeterogeneousMix();
-    const timer = window.setTimeout(() => compileFeedback(), 4200);
+    const timer = window.setTimeout(() => compileFeedback(), publicDemo ? 900 : 4200);
     return () => window.clearTimeout(timer);
-  }, [recordingDemo]);
+  }, [replayDemo, publicDemo]);
 
   async function checkOllama(showError = true) {
+    if (publicDemo) return true;
     setOllama((current) => ({ ...current, state: "checking" }));
     try {
       const versionResponse = await fetch("/ollama/api/version");
@@ -315,12 +321,13 @@ function WorkspaceApp() {
 
   function loadHeterogeneousMix() {
     setFeedback(HETEROGENEOUS_MIX.map((entry) => ({ ...entry })));
+    setDatasetPack("casebook");
     setSelectedCaseId("MIXED");
     setResult(null);
     setError("");
     setHandoffNotice("");
     setStatus("idle");
-    setStatusMessage("Mixed input set loaded · 6 formats · short to transcript-length");
+    setStatusMessage(publicDemo ? "Public replay ready · no model call" : "Mixed input set loaded · 6 formats · short to transcript-length");
   }
 
   function loadDatasetCase(datasetCase) {
@@ -361,11 +368,11 @@ function WorkspaceApp() {
     setStatus("loading");
     setStatusMessage("Compiling locally…");
     setResult(null);
-    if (recordingDemo) {
+    if (replayDemo) {
       await new Promise((resolve) => window.setTimeout(resolve, 700));
       setResult(RECORDING_RESULT);
       setStatus("success");
-      setStatusMessage(`Recorded local result with ${model}`);
+      setStatusMessage(publicDemo ? "Public replay complete · no model call" : `Recorded local result with ${model}`);
       return;
     }
     try {
@@ -431,51 +438,52 @@ function WorkspaceApp() {
   const scrollToWorkspace = () => document.querySelector("#workspace")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="app-shell" data-recording-demo={recordingDemo ? "true" : "false"}>
+    <div className="app-shell" data-recording-demo={recordingDemo ? "true" : "false"} data-public-demo={publicDemo ? "true" : "false"}>
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="Feedback Compiler home"><span className="wordmark-mark">FC</span><span>feedback compiler</span></a>
         <nav className="site-nav" aria-label="Main navigation"><a href="#workspace">Workspace</a><a href="#workflow">How it works</a><a href="#privacy">Privacy</a></nav>
-        <button className={`header-status status-button ${ollama.state}`} type="button" onClick={() => checkOllama(true)}><span className="status-dot" /> {ollama.state === "ready" ? "ollama ready" : ollama.state === "checking" ? "checking local" : "ollama offline"}</button>
+        <button className={`header-status status-button ${ollama.state}`} type="button" onClick={() => checkOllama(true)} disabled={publicDemo}><span className="status-dot" /> {publicDemo ? "public replay / no model call" : ollama.state === "ready" ? "ollama ready" : ollama.state === "checking" ? "checking local" : "ollama offline"}</button>
       </header>
       {recordingDemo && <div className="recording-banner page-grid"><span>RECORDED DEMO</span><strong>synthetic mixed set · recorded local flow · review before handoff</strong></div>}
+      {publicDemo && <div className="recording-banner public-banner page-grid"><span>PUBLIC REPLAY</span><strong>synthetic mixed set · preserved local output · no Ollama request</strong></div>}
 
       <main id="top">
         <section className="hero page-grid">
           <div className="hero-copy">
             <div className="hero-character"><TypeMascot mood="wave" /><span>Hi, I keep the signal together.</span></div>
-            <p className="eyebrow"><span className="eyebrow-line" /> LOCAL-FIRST / LIVE WORKSPACE</p>
+            <p className="eyebrow"><span className="eyebrow-line" /> {publicDemo ? "PUBLIC REPLAY / NO MODEL CALL" : "LOCAL-FIRST / LIVE WORKSPACE"}</p>
             <h1>Less feedback noise. <em>More</em> next moves.</h1>
-            <p className="hero-lede">Paste fragmented product feedback, run a local compilation and review the source-linked result before anything becomes a task.</p>
+            <p className="hero-lede">{publicDemo ? "Explore a preserved synthetic run of the product. Live inference stays local through Ollama and is intentionally not exposed on this page." : "Paste fragmented product feedback, run a local compilation and review the source-linked result before anything becomes a task."}</p>
             <div className="hero-actions"><button className="primary-button" type="button" onClick={scrollToWorkspace}>Open the workspace <span aria-hidden="true">↓</span></button><a className="text-link" href="#privacy">Read the privacy boundary <span aria-hidden="true">↗</span></a></div>
-            <div className="hero-proof"><span>in-memory</span> input&nbsp;&nbsp;·&nbsp;&nbsp;<span>local</span> Ollama inference&nbsp;&nbsp;·&nbsp;&nbsp;<span>source-linked</span> output</div>
+            <div className="hero-proof">{publicDemo ? <><span>synthetic</span> input&nbsp;&nbsp;·&nbsp;&nbsp;<span>preserved</span> local output&nbsp;&nbsp;·&nbsp;&nbsp;<span>no network</span> inference</> : <><span>in-memory</span> input&nbsp;&nbsp;·&nbsp;&nbsp;<span>local</span> Ollama inference&nbsp;&nbsp;·&nbsp;&nbsp;<span>source-linked</span> output</>}</div>
           </div>
           <div className="hero-card-wrap" aria-label="Product preview">
-            <div className="hero-card-shadow" /><div className="hero-card"><div className="card-topline"><span>LOCAL / OLLAMA</span><span className="live-chip"><span className="status-dot" /> {ollama.state === "ready" ? "READY" : "CHECKING"}</span></div><div className="card-title">Three messages.<br /><strong>One review surface.</strong></div><div className="mini-thread">{SAMPLE_FEEDBACK.map((entry) => <div className="thread-row" key={entry.id}><span className="thread-id">{entry.id}</span><span>{entry.text}</span></div>)}</div><div className="compile-line"><span className="compile-arrow">↳</span><span>compile in the workspace below</span><span className="compile-badge">LOCAL</span></div></div>
+            <div className="hero-card-shadow" /><div className="hero-card"><div className="card-topline"><span>{publicDemo ? "PUBLIC / REPLAY" : "LOCAL / OLLAMA"}</span><span className="live-chip"><span className="status-dot" /> {publicDemo ? "READY" : ollama.state === "ready" ? "READY" : "CHECKING"}</span></div><div className="card-title">Three messages.<br /><strong>One review surface.</strong></div><div className="mini-thread">{SAMPLE_FEEDBACK.map((entry) => <div className="thread-row" key={entry.id}><span className="thread-id">{entry.id}</span><span>{entry.text}</span></div>)}</div><div className="compile-line"><span className="compile-arrow">↳</span><span>{publicDemo ? "replay the preserved run" : "compile in the workspace below"}</span><span className="compile-badge">{publicDemo ? "STATIC" : "LOCAL"}</span></div></div>
           </div>
         </section>
 
         <section className="signal-strip" aria-label="Product principles"><div><span className="strip-index">01</span><strong>PROVENANCE</strong><span>Source IDs stay attached.</span></div><div><span className="strip-index">02</span><strong>REVIEW</strong><span>Human approval stays in the loop.</span></div><div><span className="strip-index">03</span><strong>PRIVACY</strong><span>Input stays in memory only.</span></div></section>
 
         <section className="workspace-section page-grid" id="workspace">
-          <div className="workspace-heading"><div><p className="eyebrow"><span className="eyebrow-line" /> LIVE LOCAL WORKSPACE</p><h2>Compile the<br /><em>next move.</em></h2></div><p className="section-lede">Add messages, keep their source IDs, then compile the batch on this computer. The active session is not retained after the page is closed.</p></div>
-          <InputFlow />
+          <div className="workspace-heading"><div><p className="eyebrow"><span className="eyebrow-line" /> {publicDemo ? "PUBLIC REPLAY / PRESERVED RUN" : "LIVE LOCAL WORKSPACE"}</p><h2>{publicDemo ? <>Review the<br /><em>next move.</em></> : <>Compile the<br /><em>next move.</em></>}</h2></div><p className="section-lede">{publicDemo ? "This public page replays a synthetic local run. It never contacts Ollama; use the repository instructions for live inference on your own computer." : "Add messages, keep their source IDs, then compile the batch on this computer. The active session is not retained after the page is closed."}</p></div>
+          <InputFlow publicDemo={publicDemo} />
           <div className="workspace-grid">
             <section className="input-panel panel">
-              <div className="panel-heading"><div><span className="panel-kicker">01 / INPUT</span><h3>Feedback batch</h3></div><span className="memory-badge">IN MEMORY</span></div>
-              <div className="privacy-toggle"><div className="privacy-lock"><span className="toggle-ui static-on" /><span><strong>Privacy mode</strong><small>Always in memory · no browser persistence</small></span></div><span className="info-mark" title="Input and output disappear when this tab is closed.">i</span></div>
-              <div className="dataset-browser"><div className="dataset-browser-heading"><div><strong>{datasetPack === "casebook" ? "8-CASE CASEBOOK" : "30-CASE BENCHMARK"}</strong><span>{datasetPack === "casebook" ? "Realistic shapes · separate from benchmark scores" : "Controlled failure modes · regression surface"}</span></div><b>{selectedCaseId || "CUSTOM"}</b></div><div className="dataset-pack-switch" role="group" aria-label="Input collection"><button className={datasetPack === "benchmark" ? "active" : ""} type="button" onClick={() => switchDatasetPack("benchmark")}>30 benchmark</button><button className={datasetPack === "casebook" ? "active" : ""} type="button" onClick={() => switchDatasetPack("casebook")}>8 casebook</button><button className="mixed-button" type="button" onClick={loadHeterogeneousMix}>Load mixed set</button></div><div className="case-grid">{visibleCases.map((datasetCase) => <button className={`case-card ${selectedCaseId === datasetCase.case_id ? "selected" : ""}`} type="button" key={datasetCase.case_id} title={`${datasetCase.title || datasetCase.input_type} · ${(datasetCase.primary_failure_mode || datasetCase.expected_rule_coverage || []).toString()}`} onClick={() => loadDatasetCase(datasetCase)}><span>{datasetCase.case_id}</span><small>{datasetCase.difficulty || (datasetCase.supported_now === "partial" ? "EXT" : "MIXED")}</small></button>)}</div>{selectedCase && <div className="dataset-case-meta"><strong>{selectedCase.title || selectedCase.input_type?.replaceAll("_", " ") || "Custom set"}</strong><span>{selectedCase.primary_failure_mode || `${selectedCase.input_type} · ${(selectedCase.expected_rule_coverage || []).join(" / ")}`} · {selectedCase.feedback.length} input{selectedCase.feedback.length === 1 ? "" : "s"}</span></div>}{selectedCaseId === "MIXED" && <div className="dataset-case-meta"><strong>Mixed input set</strong><span>Slack · email · meeting · ticket · multilingual · transcript · 6 inputs</span></div>}</div>
+              <div className="panel-heading"><div><span className="panel-kicker">01 / INPUT</span><h3>Feedback batch</h3></div><span className="memory-badge">{publicDemo ? "SYNTHETIC" : "IN MEMORY"}</span></div>
+              <div className="privacy-toggle"><div className="privacy-lock"><span className="toggle-ui static-on" /><span><strong>{publicDemo ? "Replay mode" : "Privacy mode"}</strong><small>{publicDemo ? "Preserved output · no model request" : "Always in memory · no browser persistence"}</small></span></div><span className="info-mark" title={publicDemo ? "This page uses a fixed synthetic result." : "Input and output disappear when this tab is closed."}>i</span></div>
+              <div className="dataset-browser"><div className="dataset-browser-heading"><div><strong>{datasetPack === "casebook" ? "8-CASE CASEBOOK" : "30-CASE BENCHMARK"}</strong><span>{publicDemo ? "Fixed synthetic fixture · preserved local output" : datasetPack === "casebook" ? "Realistic shapes · separate from benchmark scores" : "Controlled failure modes · regression surface"}</span></div><b>{selectedCaseId || "CUSTOM"}</b></div><div className="dataset-pack-switch" role="group" aria-label="Input collection"><button className={datasetPack === "benchmark" ? "active" : ""} type="button" disabled={publicDemo} onClick={() => switchDatasetPack("benchmark")}>30 benchmark</button><button className={datasetPack === "casebook" ? "active" : ""} type="button" disabled={publicDemo} onClick={() => switchDatasetPack("casebook")}>8 casebook</button><button className="mixed-button" type="button" disabled={publicDemo} onClick={loadHeterogeneousMix}>Load mixed set</button></div><div className="case-grid">{visibleCases.map((datasetCase) => <button className={`case-card ${selectedCaseId === datasetCase.case_id ? "selected" : ""}`} type="button" disabled={publicDemo} key={datasetCase.case_id} title={`${datasetCase.title || datasetCase.input_type} · ${(datasetCase.primary_failure_mode || datasetCase.expected_rule_coverage || []).toString()}`} onClick={() => loadDatasetCase(datasetCase)}><span>{datasetCase.case_id}</span><small>{datasetCase.difficulty || (datasetCase.supported_now === "partial" ? "EXT" : "MIXED")}</small></button>)}</div>{selectedCase && <div className="dataset-case-meta"><strong>{selectedCase.title || selectedCase.input_type?.replaceAll("_", " ") || "Custom set"}</strong><span>{selectedCase.primary_failure_mode || `${selectedCase.input_type} · ${(selectedCase.expected_rule_coverage || []).join(" / ")}`} · {selectedCase.feedback.length} input{selectedCase.feedback.length === 1 ? "" : "s"}</span></div>}{selectedCaseId === "MIXED" && <div className="dataset-case-meta"><strong>Mixed input set</strong><span>Slack · email · meeting · ticket · multilingual · transcript · 6 inputs</span></div>}</div>
               <div className="feedback-list">
-                {feedback.map((entry, index) => <div className="feedback-editor" key={`${entry.id}-${index}`}><div className="feedback-editor-top"><span className="feedback-index">{String(index + 1).padStart(2, "0")}</span><input className="source-input" aria-label={`Source ID ${index + 1}`} value={entry.id} onChange={(event) => updateFeedback(index, "id", event.target.value)} /><input className="source-origin-input" aria-label={`Source origin ${index + 1}`} placeholder="Source / role" value={entry.source} onChange={(event) => updateFeedback(index, "source", event.target.value)} /><select className="format-select" aria-label={`Input format ${index + 1}`} value={entry.format || "custom"} onChange={(event) => updateFeedback(index, "format", event.target.value)}>{INPUT_FORMATS.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select><button className="remove-button" type="button" aria-label={`Remove feedback ${index + 1}`} onClick={() => removeFeedback(index)}>×</button></div><div className="feedback-format-line"><span className="format-mark">{formatMark(entry.format)}</span><span>{formatLabel(entry.format)}</span><span>input {entry.text.length > 280 ? "long-form" : entry.text.length > 100 ? "medium" : "short"}</span></div><textarea aria-label={`Feedback ${index + 1}`} placeholder="Paste one feedback message, paragraph, ticket or transcript excerpt…" value={entry.text} onChange={(event) => updateFeedback(index, "text", event.target.value)} /></div>)}
+                {feedback.map((entry, index) => <div className="feedback-editor" key={`${entry.id}-${index}`}><div className="feedback-editor-top"><span className="feedback-index">{String(index + 1).padStart(2, "0")}</span><input className="source-input" aria-label={`Source ID ${index + 1}`} value={entry.id} readOnly={publicDemo} onChange={(event) => updateFeedback(index, "id", event.target.value)} /><input className="source-origin-input" aria-label={`Source origin ${index + 1}`} placeholder="Source / role" value={entry.source} readOnly={publicDemo} onChange={(event) => updateFeedback(index, "source", event.target.value)} /><select className="format-select" aria-label={`Input format ${index + 1}`} value={entry.format || "custom"} disabled={publicDemo} onChange={(event) => updateFeedback(index, "format", event.target.value)}>{INPUT_FORMATS.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select><button className="remove-button" type="button" disabled={publicDemo} aria-label={`Remove feedback ${index + 1}`} onClick={() => removeFeedback(index)}>×</button></div><div className="feedback-format-line"><span className="format-mark">{formatMark(entry.format)}</span><span>{formatLabel(entry.format)}</span><span>input {entry.text.length > 280 ? "long-form" : entry.text.length > 100 ? "medium" : "short"}</span></div><textarea aria-label={`Feedback ${index + 1}`} placeholder="Paste one feedback message, paragraph, ticket or transcript excerpt…" value={entry.text} readOnly={publicDemo} onChange={(event) => updateFeedback(index, "text", event.target.value)} /></div>)}
               </div>
-              <div className="input-actions"><button className="small-button" type="button" onClick={addFeedback}>+ Add feedback</button><button className="small-link" type="button" onClick={loadSample}>Load sample</button></div>
-              <div className="compile-controls"><label className="model-field"><span>MODEL</span><input value={model} onChange={(event) => { setModel(event.target.value); setOllama((current) => ({ ...current, state: "checking" })); }} /></label><button className="compile-button" type="button" onClick={compileFeedback} disabled={status === "loading"}>{status === "loading" ? "Compiling…" : "Compile locally ↗"}</button></div>
-              <div className={`workspace-status ${status}`}><span className="status-dot" />{statusMessage}<button type="button" onClick={() => checkOllama(true)}>check Ollama</button></div>
+              {!publicDemo && <div className="input-actions"><button className="small-button" type="button" onClick={addFeedback}>+ Add feedback</button><button className="small-link" type="button" onClick={loadSample}>Load sample</button></div>}
+              <div className="compile-controls"><label className="model-field"><span>{publicDemo ? "REPLAY SOURCE" : "MODEL"}</span><input value={publicDemo ? "preserved local run" : model} disabled={publicDemo} onChange={(event) => { setModel(event.target.value); setOllama((current) => ({ ...current, state: "checking" })); }} /></label><button className="compile-button" type="button" onClick={compileFeedback} disabled={status === "loading"}>{status === "loading" ? (publicDemo ? "Preparing replay…" : "Compiling…") : publicDemo ? "Run public replay ↗" : "Compile locally ↗"}</button></div>
+              <div className={`workspace-status ${status}`}><span className="status-dot" />{statusMessage}{!publicDemo && <button type="button" onClick={() => checkOllama(true)}>check Ollama</button>}</div>
               {error && <div className="error-box" role="alert">{error}</div>}
             </section>
 
             <section className="result-panel panel">
               <div className="panel-heading"><div><span className="panel-kicker">02 / OUTPUT</span><h3>Review surface</h3></div>{result && <button className="small-link" type="button" onClick={resetOutput}>Clear output</button>}</div>
-              {!result ? <div className="empty-result"><TypeMascot mood="idle" /><h3>Your compiled signal will appear here.</h3><p>Requests, decisions, conflicts, duplicates, questions and deadlines will be aggregated into a review board.</p><div className="empty-checks"><span>✓ Local model</span><span>✓ Schema output</span><span>✓ Human review</span></div></div> : <div className="result-content"><div className="result-summary"><TypeMascot mood="happy" compact /><div><strong>Compilation complete</strong><span>{Object.values(result).flat().length} structured items · provenance checked</span></div></div><div className="export-toolbar"><span>Save structured result</span><button type="button" onClick={() => exportResult("txt")}>Download .txt</button><button type="button" onClick={() => exportResult("json")}>Download .json</button></div><OutputBoard result={result} /><DestinationActions result={result} onPrepare={prepareDestination} notice={handoffNotice} />{result.notes?.length > 0 && <section className="result-group blue"><div className="result-group-heading"><span className="result-dot" /><span>Notes</span></div>{result.notes.map((note) => <p className="result-note" key={note}>{note}</p>)}</section>}</div>}
+            {!result ? <div className="empty-result"><TypeMascot mood="idle" /><h3>Your compiled signal will appear here.</h3><p>Requests, decisions, conflicts, duplicates, questions and deadlines will be aggregated into a review board.</p><div className="empty-checks"><span>✓ Local model</span><span>✓ Schema output</span><span>✓ Human review</span></div></div> : <div className="result-content"><div className="result-summary"><TypeMascot mood="happy" compact /><div><strong>{publicDemo ? "Replay complete" : "Compilation complete"}</strong><span>{Object.values(result).flat().length} structured items · {publicDemo ? "preserved output" : "provenance checked"}</span></div></div><div className="export-toolbar"><span>Save structured result</span><button type="button" onClick={() => exportResult("txt")}>Download .txt</button><button type="button" onClick={() => exportResult("json")}>Download .json</button></div><OutputBoard result={result} /><DestinationActions result={result} onPrepare={prepareDestination} notice={handoffNotice} />{result.notes?.length > 0 && <section className="result-group blue"><div className="result-group-heading"><span className="result-dot" /><span>Notes</span></div>{result.notes.map((note) => <p className="result-note" key={note}>{note}</p>)}</section>}</div>}
             </section>
           </div>
         </section>
@@ -487,7 +495,7 @@ function WorkspaceApp() {
         <section className="closing-section page-grid"><p className="eyebrow"><span className="eyebrow-line" /> NEXT INPUTS</p><div className="closing-content"><h2>Short messages today.<br /><em>Transcripts tomorrow.</em></h2><p>With domain examples, privacy-aware preprocessing and provenance at timestamp level, the same compiler can grow into longer, multi-speaker inputs.</p><button className="outline-button" type="button" onClick={scrollToWorkspace}>Open workspace <span aria-hidden="true">↗</span></button></div></section>
       </main>
 
-      <footer className="site-footer page-grid"><span>FEEDBACK COMPILER / WEEK 1</span><span>LIVE LOCAL DEMO / SYNTHETIC DEFAULT</span><span className="footer-progress">SCROLL {String(progress).padStart(2, "0")} %</span></footer>
+      <footer className="site-footer page-grid"><span>FEEDBACK COMPILER / WEEK 1</span><span>{publicDemo ? "PUBLIC REPLAY / NO MODEL CALL" : "LIVE LOCAL DEMO / SYNTHETIC DEFAULT"}</span><span className="footer-progress">SCROLL {String(progress).padStart(2, "0")} %</span></footer>
     </div>
   );
 }

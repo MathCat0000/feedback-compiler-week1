@@ -35,3 +35,5 @@ The examples are synthetic or derived from public-data input shapes. The video d
 ## Presentation artifact
 
 The repository includes the matching [video walkthrough](../demo/recordings/feedback-compiler-demo.mov). It uses the same visual language and the same sequence as the live workspace: warm white workspace, dark privacy boundary, restrained green accents, 3D mascot, heterogeneous inputs, review board and manual handoff boundary.
+
+For an online reviewer, use the [public replay demo](PUBLIC_DEMO.md). It renders the interface with synthetic inputs and preserved local output, without contacting Ollama or presenting a hosted model endpoint.

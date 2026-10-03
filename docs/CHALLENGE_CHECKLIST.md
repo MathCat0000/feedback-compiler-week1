@@ -10,7 +10,7 @@ The official page says the project must be a new build using open-source AI at i
 | --- | --- | --- |
 | What I Built | `README.md` and `docs/PRODUCT_GUIDE.md` | ready for factual review |
 | Who it is for | Workflow shaped around a friend receiving team feedback | add consent and handoff evidence; do not claim successful use yet |
-| Demo | Local app at `http://localhost:5173` plus the verified `demo/recordings/feedback-compiler-demo.mov` | upload the video or add a public URL before publishing |
+| Demo | Local app at `http://localhost:5173`, verified `demo/recordings/feedback-compiler-demo.mov`, and a GitHub Pages public replay workflow | publish the post only after the public replay URL is reachable; do not present it as live model inference |
 | Code | Repository source and reproducible commands | add public repository URL |
 | Open-source AI | Ollama + local `gemma4:e2b-it-qat` run, with preserved artifacts and `npm run setup:local` | keep exact model tag and license record in final post |
 | Why open innovation matters | local inference, model swap, privacy boundary, inspectable artifacts | ready, keep claims bounded |

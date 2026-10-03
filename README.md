@@ -35,10 +35,13 @@ The repository contains only synthetic examples and carefully attributed public-
 
 - [Product guide](docs/PRODUCT_GUIDE.md)
 - [Video walkthrough](demo/recordings/feedback-compiler-demo.mov)
+- [Public replay demo](docs/PUBLIC_DEMO.md) — static walkthrough with no model call
 - [Privacy boundary](docs/PRIVACY.md)
 - [GitHub publishing](docs/GITHUB_PUBLISHING.md)
 
 The video follows the same path as the app: heterogeneous input, local compilation, source-linked review, and a paste-ready handoff that still requires human approval.
+
+The public replay follows the same interface with a preserved synthetic result. It does not call Ollama or expose the local inference service. The live model remains a local-only capability.
 
 ## How the product works
 
