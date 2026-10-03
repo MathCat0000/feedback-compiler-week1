@@ -14,7 +14,7 @@ The official page says the project must be a new build using open-source AI at i
 | Code | Repository source and reproducible commands | add public repository URL |
 | Open-source AI | Ollama + local `gemma4:e2b-it-qat` run, with preserved artifacts and `npm run setup:local` | keep exact model tag and license record in final post |
 | Why open innovation matters | local inference, model swap, privacy boundary, inspectable artifacts | ready, keep claims bounded |
-| Agent session | Public Codex session reference: `https://chatgpt.com/s/cx_6ac0c10544c8819183d835ec37d20750` | this is not a DEV Agent Session URL; upload to DEV only after authentication and transcript curation |
+| Agent session | Not included | optional; intentionally omitted to avoid exposing the working transcript and project context |
 | Prize category | Best Use of Gemma is potentially applicable | enter only if the published project genuinely uses and documents Gemma |
 | Required tags | `#devchallenge #weekendchallenge #hf26challenge` | include in DEV post |
 | Language | English draft | required for prize eligibility according to the challenge FAQ |

@@ -37,7 +37,6 @@ The repository contains only synthetic examples and carefully attributed public-
 - [Video walkthrough](demo/recordings/feedback-compiler-demo.mov)
 - [Privacy boundary](docs/PRIVACY.md)
 - [GitHub publishing](docs/GITHUB_PUBLISHING.md)
-- [Public session reference](https://chatgpt.com/s/cx_6ac0c10544c8819183d835ec37d20750) — read-only Codex share
 
 The video follows the same path as the app: heterogeneous input, local compilation, source-linked review, and a paste-ready handoff that still requires human approval.
 
