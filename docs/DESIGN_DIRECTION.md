@@ -25,7 +25,7 @@ This direction follows three practical criteria from current mascot work: a char
 - Glassmorphism as the default surface language.
 - Autoplay video backgrounds and scroll-jacking.
 - Motion that does not explain a state change.
-- Sending the mother's recording or client feedback to a third-party upload service.
+- Sending a friend's recording or client feedback to a third-party upload service.
 
 ## Product hierarchy
 

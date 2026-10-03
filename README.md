@@ -27,7 +27,7 @@ The mascot is part of the product language, not a separate illustration: it mark
 
 ## Why it exists
 
-I built this for my mother, who receives feedback from her team and needs to turn it into clear follow-up work without copying private material into a hosted service. The central design decision is therefore simple: the useful transformation should happen on the same computer as the person using the product.
+I built this for a friend who receives feedback from a team and needs to turn it into clear follow-up work without copying private material into a hosted service. The central design decision is therefore simple: the useful transformation should happen on the same computer as the person using the product.
 
 The repository contains only synthetic examples and carefully attributed public-data input shapes. It does not contain client feedback or private team transcripts.
 
