@@ -1,0 +1,153 @@
+{
+  "case_id": "HX005",
+  "expected": {
+    "conflicts": [
+      {
+        "source_ids": [
+          "C-501",
+          "C-502"
+        ]
+      }
+    ],
+    "open_questions": [
+      {
+        "source_ids": [
+          "C-501",
+          "C-502"
+        ],
+        "basis": "conflict"
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "before Monday",
+        "related_source_ids": [
+          "C-503"
+        ]
+      }
+    ]
+  },
+  "actual": {
+    "requests": [],
+    "decisions": [],
+    "conflicts": [
+      {
+        "topic": "desktop gallery layout",
+        "items": [
+          {
+            "text": "Use a horizontal carousel for the desktop gallery.",
+            "source_ids": [
+              "C-501"
+            ]
+          },
+          {
+            "text": "Keep the desktop gallery as a grid; carousel is out of scope.",
+            "source_ids": [
+              "C-502"
+            ]
+          }
+        ]
+      }
+    ],
+    "duplicates": [],
+    "open_questions": [
+      {
+        "text": "I need a decision before Monday.",
+        "source_ids": [
+          "C-503"
+        ],
+        "basis": "ambiguity"
+      },
+      {
+        "text": "Confirm the desktop gallery layout",
+        "source_ids": [
+          "C-501",
+          "C-502"
+        ],
+        "basis": "conflict"
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "before Monday",
+        "related_request": "I need a decision before Monday.",
+        "related_source_ids": [
+          "C-503"
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PARTIAL_HEURISTIC",
+    "matched": 2,
+    "expected_items": 3,
+    "actual_items": 4,
+    "categories": {
+      "requests": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 0,
+        "unmatched_actual": 1,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": null,
+            "score": 0
+          }
+        ]
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 1,
+        "actual": 2,
+        "matched": 1,
+        "unmatched_actual": 1,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 1,
+            "score": 0.7
+          }
+        ]
+      },
+      "deadlines": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.85
+          }
+        ]
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

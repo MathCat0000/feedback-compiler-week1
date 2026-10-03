@@ -1,0 +1,24 @@
+node_modules/
+demo/dist/
+demo/node_modules/
+scripts/.build/
+runs/private/
+.DS_Store
+
+# Local orchestration notes are not part of the public repository.
+/CONVERSATION_CONTEXT.md
+/HANDOFF_CODEX.md
+/DOCUMENTATION_PLAN.md
+**/graphify-out/
+
+# Keep the local evidence archive, but publish only the final representative runs.
+/runs/*
+!/runs/README.md
+!/runs/2026-10-03T07-25-19-209Z-gemma4-e2b-it-qat/
+!/runs/2026-10-03T07-25-19-209Z-gemma4-e2b-it-qat/**
+!/runs/2026-10-03T07-28-31-451Z-gemma4-e2b-it-qat/
+!/runs/2026-10-03T07-28-31-451Z-gemma4-e2b-it-qat/**
+!/runs/public/
+/runs/public/*
+!/runs/public/2026-10-03T07-29-37-963Z-gemma4-e2b-it-qat/
+!/runs/public/2026-10-03T07-29-37-963Z-gemma4-e2b-it-qat/**

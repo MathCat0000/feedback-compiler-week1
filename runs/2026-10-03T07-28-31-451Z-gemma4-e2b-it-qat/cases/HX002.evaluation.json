@@ -1,0 +1,110 @@
+{
+  "case_id": "HX002",
+  "expected": {
+    "decisions": [
+      {
+        "source_ids": [
+          "E-202"
+        ]
+      }
+    ],
+    "open_questions": [
+      {
+        "source_ids": [
+          "E-203"
+        ],
+        "basis": "explicit_missing_information"
+      }
+    ]
+  },
+  "actual": {
+    "requests": [],
+    "decisions": [
+      {
+        "text": "Let's use the shorter subtitle in the pricing hero",
+        "source_ids": [
+          "E-202"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [
+      {
+        "text": "Can you confirm whether this also applies to mobile checkout?",
+        "source_ids": [
+          "E-203"
+        ],
+        "basis": "explicit_missing_information"
+      }
+    ],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 2,
+    "expected_items": 2,
+    "actual_items": 2,
+    "categories": {
+      "requests": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.7
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.7
+          }
+        ]
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "feedback-compiler-week1",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Ollama evaluation harness for Feedback Compiler week 1",
+  "scripts": {
+    "eval:smoke": "node scripts/evaluate.mjs --smoke",
+    "eval:casebook": "node scripts/evaluate.mjs --casebook --all",
+    "eval:casebook:privacy": "node scripts/evaluate.mjs --casebook --all --privacy",
+    "eval:public": "node scripts/evaluate-public.mjs",
+    "eval:public:privacy": "node scripts/evaluate-public.mjs --privacy",
+    "eval:privacy": "node scripts/evaluate.mjs --smoke --privacy",
+    "eval": "node scripts/evaluate.mjs --all",
+    "test:unit": "node scripts/test-post-process.mjs",
+    "test:casebook": "node scripts/test-casebook.mjs",
+    "test": "npm run test:unit && npm run test:casebook",
+    "setup:local": "node scripts/setup-local.mjs",
+    "model:pull": "node scripts/setup-local.mjs --pull",
+    "app": "npm run setup:local && npm run demo:dev",
+    "demo:dev": "npm --prefix demo run dev",
+    "demo:build": "npm --prefix demo run build",
+    "demo:preview": "npm --prefix demo run preview",
+    "demo:video": "mkdir -p scripts/.build && swiftc scripts/encode-demo-frames.swift -o scripts/.build/encode-demo-frames -framework AVFoundation -framework CoreGraphics -framework ImageIO -O && node scripts/record-demo.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

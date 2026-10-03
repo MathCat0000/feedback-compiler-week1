@@ -1,0 +1,14 @@
+{
+  "file": "fixtures/feedback_compiler_heterogeneous_v1.json",
+  "sha256": "881db107dd23f24f0a00803b8e86f369a7ddca91aac29a3bf035817ea792d1d9",
+  "cases": [
+    "HX001",
+    "HX002",
+    "HX003",
+    "HX004",
+    "HX005",
+    "HX006",
+    "HX007",
+    "HX008"
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "case_id": "HX001",
+    "input_type": "slack_thread",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 11097
+  },
+  {
+    "case_id": "HX002",
+    "input_type": "email_thread",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 6050
+  },
+  {
+    "case_id": "HX003",
+    "input_type": "meeting_notes",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PARTIAL_HEURISTIC",
+    "inference_ms": 9983
+  },
+  {
+    "case_id": "HX004",
+    "input_type": "support_ticket",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4143
+  },
+  {
+    "case_id": "HX005",
+    "input_type": "cross_functional_thread",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PARTIAL_HEURISTIC",
+    "inference_ms": 12265
+  },
+  {
+    "case_id": "HX006",
+    "input_type": "multilingual_chat",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 5524
+  },
+  {
+    "case_id": "HX007",
+    "input_type": "adversarial_feedback",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 5255
+  },
+  {
+    "case_id": "HX008",
+    "input_type": "transcript_excerpt",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 5724
+  }
+]

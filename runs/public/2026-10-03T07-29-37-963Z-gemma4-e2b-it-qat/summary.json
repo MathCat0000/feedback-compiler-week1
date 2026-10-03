@@ -1,0 +1,10 @@
+{
+  "run_id": "2026-10-03T07-29-37-963Z-gemma4-e2b-it-qat",
+  "cases_executed": 8,
+  "runtime_failures": 0,
+  "schema_valid": 8,
+  "provenance_valid": 8,
+  "first_inference_ms": 4445,
+  "warm_inference_mean_ms": 6951,
+  "generated_at": "2026-10-03T07:30:31.096Z"
+}

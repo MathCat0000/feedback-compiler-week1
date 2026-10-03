@@ -1,0 +1,77 @@
+{
+  "run_id": "2026-10-03T07-28-31-451Z-gemma4-e2b-it-qat",
+  "mode": "all",
+  "model": "gemma4:e2b-it-qat",
+  "model_installed": true,
+  "installed_model_record": {
+    "name": "gemma4:e2b-it-qat",
+    "model": "gemma4:e2b-it-qat",
+    "modified_at": "2026-10-02T09:50:31.067454508+02:00",
+    "size": 4336358185,
+    "digest": "07ea59a474013479c8b6b802bef095c40e964a1d776ba02f264c0e30e1aede0c",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gemma4",
+      "families": [
+        "gemma4"
+      ],
+      "parameter_size": "4.6B",
+      "quantization_level": "Q4_0",
+      "context_length": 131072,
+      "embedding_length": 1536
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "audio",
+      "tools",
+      "thinking"
+    ]
+  },
+  "base_url": "http://127.0.0.1:11434",
+  "options": {
+    "num_ctx": 4096,
+    "temperature": 0,
+    "think": false,
+    "stream": false
+  },
+  "post_processing": "deterministic-v2",
+  "privacy_mode": false,
+  "persistence_policy": "full-synthetic-benchmark-artifacts",
+  "timeout_ms": 30000,
+  "dataset_file": "fixtures/feedback_compiler_heterogeneous_v1.json",
+  "dataset_sha256": "881db107dd23f24f0a00803b8e86f369a7ddca91aac29a3bf035817ea792d1d9",
+  "schema_sha256": "b86424c90e0426a568258887d45ede7d6b0916d9cdae416b805797fee454649e",
+  "system_prompt_sha256": "0445ae22e3c8ed330696d553fe8d895c835e0007e197703a05d41caea98ece1c",
+  "environment": {
+    "machine": "darwin/arm64",
+    "node": "v24.14.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "api_version": "0.35.0",
+    "ollama_models": [
+      {
+        "name": "gemma4:e2b-it-qat",
+        "digest": "07ea59a474013479c8b6b802bef095c40e964a1d776ba02f264c0e30e1aede0c",
+        "size": 4336358185
+      },
+      {
+        "name": "phi3:mini",
+        "digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9",
+        "size": 2176178913
+      }
+    ]
+  },
+  "cases_requested": [
+    "HX001",
+    "HX002",
+    "HX003",
+    "HX004",
+    "HX005",
+    "HX006",
+    "HX007",
+    "HX008"
+  ],
+  "started_at": "2026-10-03T07:28:31.556Z"
+}

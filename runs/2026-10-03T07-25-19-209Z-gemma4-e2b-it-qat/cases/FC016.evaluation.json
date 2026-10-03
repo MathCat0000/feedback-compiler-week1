@@ -1,0 +1,97 @@
+{
+  "case_id": "FC016",
+  "expected": {
+    "requests": [],
+    "decisions": [
+      {
+        "text": "Use blue for the primary button",
+        "source_ids": [
+          "f3"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": [
+      "Earlier disagreement is superseded by the client's explicit final decision."
+    ]
+  },
+  "actual": {
+    "requests": [],
+    "decisions": [
+      {
+        "text": "Use blue for the primary button.",
+        "source_ids": [
+          "f3"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 1,
+    "expected_items": 1,
+    "actual_items": 1,
+    "categories": {
+      "requests": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 1
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

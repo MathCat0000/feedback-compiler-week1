@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-10-03T07-25-19-209Z-gemma4-e2b-it-qat",
+  "mode": "all",
+  "cases_requested": 30,
+  "cases_executed": 30,
+  "schema_valid": 30,
+  "provenance_valid": 30,
+  "runtime_failures": 0,
+  "heuristic_counts": {
+    "PASS_HEURISTIC": 28,
+    "PARTIAL_HEURISTIC": 2,
+    "FAIL_HEURISTIC": 0
+  },
+  "first_inference_ms": 3845,
+  "warm_inference_mean_ms": 4424,
+  "environment": {
+    "machine": "darwin/arm64",
+    "api_version": "0.35.0"
+  },
+  "generated_at": "2026-10-03T07:27:31.448Z"
+}

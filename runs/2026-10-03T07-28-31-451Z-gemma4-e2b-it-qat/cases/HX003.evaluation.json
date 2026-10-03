@@ -1,0 +1,155 @@
+{
+  "case_id": "HX003",
+  "expected": {
+    "requests": [
+      {
+        "source_ids": [
+          "M-301"
+        ],
+        "scope": "mobile hero"
+      },
+      {
+        "source_ids": [
+          "M-302"
+        ],
+        "scope": "desktop hero"
+      }
+    ],
+    "decisions": [
+      {
+        "source_ids": [
+          "M-303"
+        ]
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "by Thursday",
+        "related_source_ids": [
+          "M-301"
+        ]
+      }
+    ],
+    "conflicts": []
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "Move the hero above the fold on mobile.",
+        "source_ids": [
+          "M-301"
+        ]
+      },
+      {
+        "text": "Keep the hero below the fold on desktop.",
+        "source_ids": [
+          "M-302"
+        ]
+      },
+      {
+        "text": "Ship the mobile layout by Thursday.",
+        "source_ids": [
+          "M-304"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "text": "Use the existing CTA label",
+        "source_ids": [
+          "M-303"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [
+      {
+        "text": "Thursday",
+        "related_request": "Ship the mobile layout by Thursday.",
+        "related_source_ids": [
+          "M-304"
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PARTIAL_HEURISTIC",
+    "matched": 3,
+    "expected_items": 4,
+    "actual_items": 5,
+    "categories": {
+      "requests": {
+        "expected": 2,
+        "actual": 3,
+        "matched": 2,
+        "unmatched_actual": 1,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.7
+          },
+          {
+            "expected_index": 1,
+            "actual_index": 1,
+            "score": 0.7
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.7
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 0,
+        "unmatched_actual": 1,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": null,
+            "score": 0.06
+          }
+        ]
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

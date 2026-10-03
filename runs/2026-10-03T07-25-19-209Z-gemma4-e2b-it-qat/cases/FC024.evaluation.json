@@ -1,0 +1,74 @@
+{
+  "case_id": "FC024",
+  "expected": {
+    "requests": [],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 0,
+    "expected_items": 0,
+    "actual_items": 0,
+    "categories": {
+      "requests": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

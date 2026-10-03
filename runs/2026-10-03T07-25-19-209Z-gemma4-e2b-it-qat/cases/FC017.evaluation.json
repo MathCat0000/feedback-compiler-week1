@@ -1,0 +1,209 @@
+{
+  "case_id": "FC017",
+  "expected": {
+    "requests": [
+      {
+        "text": "Prepare the homepage",
+        "source_ids": [
+          "f1",
+          "f2"
+        ]
+      }
+    ],
+    "decisions": [],
+    "conflicts": [
+      {
+        "topic": "Homepage deadline",
+        "items": [
+          {
+            "text": "Thursday",
+            "source_ids": [
+              "f1"
+            ]
+          },
+          {
+            "text": "Friday",
+            "source_ids": [
+              "f2"
+            ]
+          }
+        ]
+      }
+    ],
+    "duplicates": [],
+    "open_questions": [
+      {
+        "text": "Confirm the homepage deadline",
+        "source_ids": [
+          "f1",
+          "f2"
+        ],
+        "basis": "conflict"
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "Thursday",
+        "related_source_ids": [
+          "f1"
+        ],
+        "related_request": "Prepare the homepage"
+      },
+      {
+        "text": "Friday",
+        "related_source_ids": [
+          "f2"
+        ],
+        "related_request": "Prepare the homepage"
+      }
+    ]
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "The homepage needs to be ready by Thursday.",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "text": "We agreed the homepage is due Friday",
+        "source_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "topic": "Homepage readiness deadline",
+        "items": [
+          {
+            "text": "The homepage needs to be ready by Thursday.",
+            "source_ids": [
+              "f1"
+            ]
+          },
+          {
+            "text": "We agreed the homepage is due Friday.",
+            "source_ids": [
+              "f2"
+            ]
+          }
+        ]
+      }
+    ],
+    "duplicates": [],
+    "open_questions": [
+      {
+        "text": "Confirm the homepage readiness deadline",
+        "source_ids": [
+          "f1",
+          "f2"
+        ],
+        "basis": "conflict"
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "Thursday",
+        "related_request": "The homepage needs to be ready by Thursday.",
+        "related_source_ids": [
+          "f1"
+        ]
+      },
+      {
+        "text": "Friday",
+        "related_request": "We agreed the homepage is due.",
+        "related_source_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PARTIAL_HEURISTIC",
+    "matched": 4,
+    "expected_items": 5,
+    "actual_items": 6,
+    "categories": {
+      "requests": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 0,
+        "unmatched_actual": 1,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": null,
+            "score": 0.47
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 1,
+        "matched": 0,
+        "unmatched_actual": 1,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.82
+          }
+        ]
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.94
+          }
+        ]
+      },
+      "deadlines": {
+        "expected": 2,
+        "actual": 2,
+        "matched": 2,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.88
+          },
+          {
+            "expected_index": 1,
+            "actual_index": 1,
+            "score": 0.88
+          }
+        ]
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

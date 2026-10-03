@@ -1,0 +1,98 @@
+{
+  "case_id": "FC019",
+  "expected": {
+    "requests": [],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [
+      {
+        "text": "Clarify whether 'it' refers to the hero image, the testimonial section, or both.",
+        "source_ids": [
+          "f1",
+          "f2"
+        ],
+        "basis": "ambiguity"
+      }
+    ],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [
+      {
+        "text": "Clarify whether 'it' refers to the hero image, the testimonial section, or both.",
+        "source_ids": [
+          "f1",
+          "f2"
+        ],
+        "basis": "ambiguity"
+      }
+    ],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 1,
+    "expected_items": 1,
+    "actual_items": 1,
+    "categories": {
+      "requests": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 1
+          }
+        ]
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

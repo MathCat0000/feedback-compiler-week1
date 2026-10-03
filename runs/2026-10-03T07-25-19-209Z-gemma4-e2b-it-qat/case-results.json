@@ -1,0 +1,302 @@
+[
+  {
+    "case_id": "FC001",
+    "title": "Simple explicit request",
+    "primary_failure_mode": "missed_request",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3845
+  },
+  {
+    "case_id": "FC002",
+    "title": "Explicit decision",
+    "primary_failure_mode": "opinion_as_decision",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3184
+  },
+  {
+    "case_id": "FC003",
+    "title": "Opinion is not a decision",
+    "primary_failure_mode": "opinion_as_decision",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 1950
+  },
+  {
+    "case_id": "FC004",
+    "title": "Simple duplicate",
+    "primary_failure_mode": "missed_duplicate",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3451
+  },
+  {
+    "case_id": "FC005",
+    "title": "Near duplicate but distinct",
+    "primary_failure_mode": "false_duplicate",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4285
+  },
+  {
+    "case_id": "FC006",
+    "title": "Obvious conflict",
+    "primary_failure_mode": "missed_conflict",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 5976
+  },
+  {
+    "case_id": "FC007",
+    "title": "Different scopes are not a conflict",
+    "primary_failure_mode": "false_conflict",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 6179
+  },
+  {
+    "case_id": "FC008",
+    "title": "Request with unresolved copy",
+    "primary_failure_mode": "invented_detail",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4746
+  },
+  {
+    "case_id": "FC009",
+    "title": "Relative deadline preserved verbatim",
+    "primary_failure_mode": "date_hallucination",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4614
+  },
+  {
+    "case_id": "FC010",
+    "title": "Multiple requests in one message",
+    "primary_failure_mode": "under_extraction",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 5065
+  },
+  {
+    "case_id": "FC011",
+    "title": "Negated request",
+    "primary_failure_mode": "negation_failure",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3169
+  },
+  {
+    "case_id": "FC012",
+    "title": "Approval and new request",
+    "primary_failure_mode": "mixed_intent",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3201
+  },
+  {
+    "case_id": "FC013",
+    "title": "Suggestion is not necessarily a request",
+    "primary_failure_mode": "suggestion_as_request",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3194
+  },
+  {
+    "case_id": "FC014",
+    "title": "Duplicate with different wording",
+    "primary_failure_mode": "missed_semantic_duplicate",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3456
+  },
+  {
+    "case_id": "FC015",
+    "title": "Problem statement is not a specific implementation request",
+    "primary_failure_mode": "solution_hallucination",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3262
+  },
+  {
+    "case_id": "FC016",
+    "title": "Conflict resolved by later message",
+    "primary_failure_mode": "stale_conflict",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 5577
+  },
+  {
+    "case_id": "FC017",
+    "title": "Conflicting deadlines",
+    "primary_failure_mode": "deadline_conflict",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PARTIAL_HEURISTIC",
+    "inference_ms": 6414
+  },
+  {
+    "case_id": "FC018",
+    "title": "Same wording, different target",
+    "primary_failure_mode": "false_duplicate",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4226
+  },
+  {
+    "case_id": "FC019",
+    "title": "Ambiguous pronoun",
+    "primary_failure_mode": "unsupported_coreference",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4312
+  },
+  {
+    "case_id": "FC020",
+    "title": "Prompt injection-like content",
+    "primary_failure_mode": "prompt_injection",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4355
+  },
+  {
+    "case_id": "FC021",
+    "title": "Mixed-language duplicate",
+    "primary_failure_mode": "multilingual_duplicate",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3697
+  },
+  {
+    "case_id": "FC022",
+    "title": "Priority should not be invented",
+    "primary_failure_mode": "priority_hallucination",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3366
+  },
+  {
+    "case_id": "FC023",
+    "title": "Explicit priority",
+    "primary_failure_mode": "missed_priority",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3255
+  },
+  {
+    "case_id": "FC024",
+    "title": "Positive comment with no action",
+    "primary_failure_mode": "comment_as_request",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 1981
+  },
+  {
+    "case_id": "FC025",
+    "title": "Request and explicit deadline in one sentence",
+    "primary_failure_mode": "missed_deadline",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3141
+  },
+  {
+    "case_id": "FC026",
+    "title": "Duplicate plus conflict",
+    "primary_failure_mode": "relation_interference",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 6526
+  },
+  {
+    "case_id": "FC027",
+    "title": "Conditional request",
+    "primary_failure_mode": "condition_loss",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 3843
+  },
+  {
+    "case_id": "FC028",
+    "title": "Request withdrawn later",
+    "primary_failure_mode": "stale_request",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4797
+  },
+  {
+    "case_id": "FC029",
+    "title": "Source attribution matters",
+    "primary_failure_mode": "wrong_source",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PASS_HEURISTIC",
+    "inference_ms": 4285
+  },
+  {
+    "case_id": "FC030",
+    "title": "Dense realistic batch",
+    "primary_failure_mode": "multi_relation_reasoning",
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "heuristic_status": "PARTIAL_HEURISTIC",
+    "inference_ms": 12777
+  }
+]

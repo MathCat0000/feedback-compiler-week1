@@ -1,0 +1,96 @@
+{
+  "case_id": "FC015",
+  "expected": {
+    "requests": [
+      {
+        "text": "Improve the visibility of the checkout button",
+        "source_ids": [
+          "f1"
+        ],
+        "scope": "checkout-button",
+        "note": "Do not infer a specific implementation such as increasing size or changing color."
+      }
+    ],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "Make the checkout button easier to notice.",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 1,
+    "expected_items": 1,
+    "actual_items": 1,
+    "categories": {
+      "requests": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.85
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

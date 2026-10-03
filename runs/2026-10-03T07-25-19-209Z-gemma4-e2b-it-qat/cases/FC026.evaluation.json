@@ -1,0 +1,139 @@
+{
+  "case_id": "FC026",
+  "expected": {
+    "requests": [],
+    "decisions": [],
+    "conflicts": [
+      {
+        "topic": "Hero top spacing",
+        "items": [
+          {
+            "text": "Reduce hero top spacing",
+            "source_ids": [
+              "f1",
+              "f2"
+            ]
+          },
+          {
+            "text": "Keep current hero spacing",
+            "source_ids": [
+              "f3"
+            ]
+          }
+        ]
+      }
+    ],
+    "duplicates": [
+      {
+        "canonical": "Reduce hero top spacing",
+        "source_ids": [
+          "f1",
+          "f2"
+        ]
+      }
+    ],
+    "open_questions": [],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [],
+    "decisions": [],
+    "conflicts": [
+      {
+        "topic": "hero top spacing",
+        "items": [
+          {
+            "text": "Reduce the hero top spacing.",
+            "source_ids": [
+              "f1"
+            ]
+          },
+          {
+            "text": "Keep the current hero spacing.",
+            "source_ids": [
+              "f3"
+            ]
+          }
+        ]
+      }
+    ],
+    "duplicates": [
+      {
+        "canonical": "Address the excessive whitespace above the hero title.",
+        "source_ids": [
+          "f2",
+          "f1"
+        ]
+      }
+    ],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 2,
+    "expected_items": 2,
+    "actual_items": 2,
+    "categories": {
+      "requests": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.724
+          }
+        ]
+      },
+      "duplicates": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.743
+          }
+        ]
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

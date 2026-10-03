@@ -1,0 +1,46 @@
+{
+  "file": "fixtures/public/feedback_compiler_public_input_pack_v1.json",
+  "sha256": "658a865ff8d5d38cf77ceac32627eab5fc706249691aa2e7271ac5b63b291b86",
+  "cases": [
+    {
+      "case_id": "PUB-BANK-001",
+      "public_dataset": "PolyAI/banking77",
+      "source_row": "train.csv:12"
+    },
+    {
+      "case_id": "PUB-BANK-002",
+      "public_dataset": "PolyAI/banking77",
+      "source_row": "train.csv:538"
+    },
+    {
+      "case_id": "PUB-BANK-003",
+      "public_dataset": "PolyAI/banking77",
+      "source_row": "train.csv:855"
+    },
+    {
+      "case_id": "PUB-OASST-001",
+      "public_dataset": "OpenAssistant/oasst1",
+      "source_row": "train:row_idx=0; message_id=6ab24d72-0181-4594-a9cd-deaf170242fb"
+    },
+    {
+      "case_id": "PUB-OASST-002",
+      "public_dataset": "OpenAssistant/oasst1",
+      "source_row": "train:row_idx=5; message_id=5249c721-e6d7-45f3-9680-f211d7be308e"
+    },
+    {
+      "case_id": "PUB-OASST-003",
+      "public_dataset": "OpenAssistant/oasst1",
+      "source_row": "train:row_idx=5 and row_idx=16"
+    },
+    {
+      "case_id": "PUB-QMSUM-001",
+      "public_dataset": "fladhak/qmsum",
+      "source_row": "test:row_idx=89; id=89"
+    },
+    {
+      "case_id": "PUB-QMSUM-002",
+      "public_dataset": "fladhak/qmsum",
+      "source_row": "test:row_idx=89; id=89"
+    }
+  ]
+}

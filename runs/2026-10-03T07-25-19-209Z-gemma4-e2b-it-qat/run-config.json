@@ -1,0 +1,99 @@
+{
+  "run_id": "2026-10-03T07-25-19-209Z-gemma4-e2b-it-qat",
+  "mode": "all",
+  "model": "gemma4:e2b-it-qat",
+  "model_installed": true,
+  "installed_model_record": {
+    "name": "gemma4:e2b-it-qat",
+    "model": "gemma4:e2b-it-qat",
+    "modified_at": "2026-10-02T09:50:31.067454508+02:00",
+    "size": 4336358185,
+    "digest": "07ea59a474013479c8b6b802bef095c40e964a1d776ba02f264c0e30e1aede0c",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gemma4",
+      "families": [
+        "gemma4"
+      ],
+      "parameter_size": "4.6B",
+      "quantization_level": "Q4_0",
+      "context_length": 131072,
+      "embedding_length": 1536
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "audio",
+      "tools",
+      "thinking"
+    ]
+  },
+  "base_url": "http://127.0.0.1:11434",
+  "options": {
+    "num_ctx": 4096,
+    "temperature": 0,
+    "think": false,
+    "stream": false
+  },
+  "post_processing": "deterministic-v2",
+  "privacy_mode": false,
+  "persistence_policy": "full-synthetic-benchmark-artifacts",
+  "timeout_ms": 30000,
+  "dataset_file": "feedback_compiler_synthetic_dataset_v1.json",
+  "dataset_sha256": "d5c308d4c3495b43ace74fd18c461cdf785236202e2c0b9e2a4beffcd56fb253",
+  "schema_sha256": "b86424c90e0426a568258887d45ede7d6b0916d9cdae416b805797fee454649e",
+  "system_prompt_sha256": "0445ae22e3c8ed330696d553fe8d895c835e0007e197703a05d41caea98ece1c",
+  "environment": {
+    "machine": "darwin/arm64",
+    "node": "v24.14.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "api_version": "0.35.0",
+    "ollama_models": [
+      {
+        "name": "gemma4:e2b-it-qat",
+        "digest": "07ea59a474013479c8b6b802bef095c40e964a1d776ba02f264c0e30e1aede0c",
+        "size": 4336358185
+      },
+      {
+        "name": "phi3:mini",
+        "digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9",
+        "size": 2176178913
+      }
+    ]
+  },
+  "cases_requested": [
+    "FC001",
+    "FC002",
+    "FC003",
+    "FC004",
+    "FC005",
+    "FC006",
+    "FC007",
+    "FC008",
+    "FC009",
+    "FC010",
+    "FC011",
+    "FC012",
+    "FC013",
+    "FC014",
+    "FC015",
+    "FC016",
+    "FC017",
+    "FC018",
+    "FC019",
+    "FC020",
+    "FC021",
+    "FC022",
+    "FC023",
+    "FC024",
+    "FC025",
+    "FC026",
+    "FC027",
+    "FC028",
+    "FC029",
+    "FC030"
+  ],
+  "started_at": "2026-10-03T07:25:19.239Z"
+}

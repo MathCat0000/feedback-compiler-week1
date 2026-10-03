@@ -1,0 +1,120 @@
+[
+  {
+    "case_id": "PUB-BANK-001",
+    "input_type": "support_ticket",
+    "public_dataset": "PolyAI/banking77",
+    "input_chars": 35,
+    "source_count": 1,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [
+      "requests"
+    ],
+    "inference_ms": 4445,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  },
+  {
+    "case_id": "PUB-BANK-002",
+    "input_type": "support_ticket",
+    "public_dataset": "PolyAI/banking77",
+    "input_chars": 113,
+    "source_count": 1,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [
+      "requests"
+    ],
+    "inference_ms": 4426,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  },
+  {
+    "case_id": "PUB-BANK-003",
+    "input_type": "support_ticket",
+    "public_dataset": "PolyAI/banking77",
+    "input_chars": 92,
+    "source_count": 1,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [
+      "requests"
+    ],
+    "inference_ms": 5090,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  },
+  {
+    "case_id": "PUB-OASST-001",
+    "input_type": "chat",
+    "public_dataset": "OpenAssistant/oasst1",
+    "input_chars": 194,
+    "source_count": 1,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [
+      "requests"
+    ],
+    "inference_ms": 5853,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  },
+  {
+    "case_id": "PUB-OASST-002",
+    "input_type": "multilingual_chat",
+    "public_dataset": "OpenAssistant/oasst1",
+    "input_chars": 70,
+    "source_count": 1,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [
+      "requests"
+    ],
+    "inference_ms": 4486,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  },
+  {
+    "case_id": "PUB-OASST-003",
+    "input_type": "multilingual_chat",
+    "public_dataset": "OpenAssistant/oasst1",
+    "input_chars": 178,
+    "source_count": 2,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [
+      "requests"
+    ],
+    "inference_ms": 6794,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  },
+  {
+    "case_id": "PUB-QMSUM-001",
+    "input_type": "transcript",
+    "public_dataset": "fladhak/qmsum",
+    "input_chars": 604,
+    "source_count": 1,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [],
+    "inference_ms": 10830,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  },
+  {
+    "case_id": "PUB-QMSUM-002",
+    "input_type": "meeting_notes",
+    "public_dataset": "fladhak/qmsum",
+    "input_chars": 684,
+    "source_count": 1,
+    "runtime_error": null,
+    "schema_valid": true,
+    "provenance_valid": true,
+    "populated_categories": [
+      "decisions"
+    ],
+    "inference_ms": 11178,
+    "semantic_status": "NOT_GOLD_NEEDS_REVIEW"
+  }
+]

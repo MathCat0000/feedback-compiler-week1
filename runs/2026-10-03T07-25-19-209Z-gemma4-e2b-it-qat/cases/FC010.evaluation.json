@@ -1,0 +1,128 @@
+{
+  "case_id": "FC010",
+  "expected": {
+    "requests": [
+      {
+        "text": "Reduce the logo size",
+        "source_ids": [
+          "f1"
+        ]
+      },
+      {
+        "text": "Move the CTA higher",
+        "source_ids": [
+          "f1"
+        ]
+      },
+      {
+        "text": "Add a mobile version",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "reduce the logo",
+        "source_ids": [
+          "f1"
+        ]
+      },
+      {
+        "text": "move the CTA higher",
+        "source_ids": [
+          "f1"
+        ]
+      },
+      {
+        "text": "add a mobile version",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 3,
+    "expected_items": 3,
+    "actual_items": 3,
+    "categories": {
+      "requests": {
+        "expected": 3,
+        "actual": 3,
+        "matched": 3,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.925
+          },
+          {
+            "expected_index": 1,
+            "actual_index": 1,
+            "score": 1
+          },
+          {
+            "expected_index": 2,
+            "actual_index": 2,
+            "score": 1
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

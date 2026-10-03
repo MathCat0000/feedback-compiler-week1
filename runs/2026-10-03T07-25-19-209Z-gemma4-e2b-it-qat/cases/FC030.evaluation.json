@@ -1,0 +1,276 @@
+{
+  "case_id": "FC030",
+  "expected": {
+    "requests": [
+      {
+        "text": "Prepare the mobile version",
+        "source_ids": [
+          "f1"
+        ],
+        "scope": "mobile"
+      },
+      {
+        "text": "Reduce hero spacing above the heading",
+        "source_ids": [
+          "f2",
+          "f3",
+          "f5"
+        ],
+        "scope": "hero"
+      },
+      {
+        "text": "Replace the 'Learn more' CTA copy",
+        "source_ids": [
+          "f3"
+        ],
+        "scope": "CTA"
+      }
+    ],
+    "decisions": [
+      {
+        "text": "Use blue as the primary color",
+        "source_ids": [
+          "f4"
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "topic": "Logo size",
+        "items": [
+          {
+            "text": "Make the logo smaller",
+            "source_ids": [
+              "f1"
+            ]
+          },
+          {
+            "text": "Keep the current logo size",
+            "source_ids": [
+              "f2"
+            ]
+          }
+        ]
+      }
+    ],
+    "duplicates": [
+      {
+        "canonical": "Reduce hero spacing above the heading",
+        "source_ids": [
+          "f2",
+          "f3",
+          "f5"
+        ]
+      }
+    ],
+    "open_questions": [
+      {
+        "text": "What copy should replace 'Learn more'?",
+        "source_ids": [
+          "f3"
+        ],
+        "basis": "explicit_missing_information"
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "Friday",
+        "related_source_ids": [
+          "f1"
+        ],
+        "related_request": "Prepare the mobile version"
+      }
+    ]
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "Make the logo a bit smaller",
+        "source_ids": [
+          "f1"
+        ]
+      },
+      {
+        "text": "Make the mobile version ready by Friday",
+        "source_ids": [
+          "f1"
+        ]
+      },
+      {
+        "text": "Reduce the hero spacing",
+        "source_ids": [
+          "f3"
+        ]
+      },
+      {
+        "text": "Change 'Learn more' copy",
+        "source_ids": [
+          "f3"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "text": "Blue as the primary color",
+        "source_ids": [
+          "f4"
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "topic": "Logo size",
+        "items": [
+          {
+            "text": "Homepage is much better. Please make the logo a bit smaller and we need mobile by Friday.",
+            "source_ids": [
+              "f1"
+            ]
+          },
+          {
+            "text": "I think the current logo size is fine, but the hero has too much space above the heading.",
+            "source_ids": [
+              "f2"
+            ]
+          }
+        ]
+      }
+    ],
+    "duplicates": [
+      {
+        "canonical": "Reduce the hero spacing",
+        "source_ids": [
+          "f3",
+          "f5"
+        ]
+      }
+    ],
+    "open_questions": [
+      {
+        "text": "What is the replacement copy for 'Learn more'?",
+        "source_ids": [
+          "f3"
+        ],
+        "basis": "ambiguity"
+      },
+      {
+        "text": "Confirm the logo size",
+        "source_ids": [
+          "f1",
+          "f2"
+        ],
+        "basis": "conflict"
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "mobile by Friday",
+        "related_request": "Make the mobile version ready by Friday",
+        "related_source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PARTIAL_HEURISTIC",
+    "matched": 7,
+    "expected_items": 8,
+    "actual_items": 10,
+    "categories": {
+      "requests": {
+        "expected": 3,
+        "actual": 4,
+        "matched": 2,
+        "unmatched_actual": 2,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 1,
+            "score": 0.85
+          },
+          {
+            "expected_index": 1,
+            "actual_index": null,
+            "score": 0.433
+          },
+          {
+            "expected_index": 2,
+            "actual_index": 3,
+            "score": 0.85
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.94
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.775
+          }
+        ]
+      },
+      "duplicates": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.667
+          }
+        ]
+      },
+      "open_questions": {
+        "expected": 1,
+        "actual": 2,
+        "matched": 1,
+        "unmatched_actual": 1,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.871
+          }
+        ]
+      },
+      "deadlines": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.9
+          }
+        ]
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

@@ -1,0 +1,115 @@
+{
+  "case_id": "FC011",
+  "expected": {
+    "requests": [
+      {
+        "text": "Update the hero title",
+        "source_ids": [
+          "f1"
+        ],
+        "scope": "hero-title"
+      }
+    ],
+    "decisions": [
+      {
+        "text": "Keep the navigation unchanged",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "Update the hero title.",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "text": "Don't change the navigation",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 2,
+    "expected_items": 2,
+    "actual_items": 2,
+    "categories": {
+      "requests": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 1
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.85
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

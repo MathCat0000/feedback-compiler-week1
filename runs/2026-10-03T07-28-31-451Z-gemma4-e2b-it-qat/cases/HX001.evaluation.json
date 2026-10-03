@@ -1,0 +1,148 @@
+{
+  "case_id": "HX001",
+  "expected": {
+    "requests": [
+      {
+        "source_ids": [
+          "S-101"
+        ],
+        "scope": "mobile hero"
+      },
+      {
+        "source_ids": [
+          "S-102"
+        ],
+        "scope": "pricing hero"
+      }
+    ],
+    "decisions": [
+      {
+        "source_ids": [
+          "S-103"
+        ]
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "before Friday",
+        "related_source_ids": [
+          "S-101"
+        ]
+      }
+    ]
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "Reduce the top padding before Friday",
+        "source_ids": [
+          "S-101"
+        ]
+      },
+      {
+        "text": "Increase the CTA visibility in the pricing hero",
+        "source_ids": [
+          "S-102"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "text": "Keep the current headline",
+        "source_ids": [
+          "S-103"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [
+      {
+        "text": "before Friday",
+        "related_request": "Reduce the top padding before Friday",
+        "related_source_ids": [
+          "S-101"
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 4,
+    "expected_items": 4,
+    "actual_items": 4,
+    "categories": {
+      "requests": {
+        "expected": 2,
+        "actual": 2,
+        "matched": 2,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.7
+          },
+          {
+            "expected_index": 1,
+            "actual_index": 1,
+            "score": 0.7
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.7
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.8
+          }
+        ]
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

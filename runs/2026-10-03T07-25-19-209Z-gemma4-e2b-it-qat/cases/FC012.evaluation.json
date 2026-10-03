@@ -1,0 +1,115 @@
+{
+  "case_id": "FC012",
+  "expected": {
+    "requests": [
+      {
+        "text": "Make the CTA more visible",
+        "source_ids": [
+          "f1"
+        ],
+        "scope": "CTA"
+      }
+    ],
+    "decisions": [
+      {
+        "text": "Approve the new homepage layout",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "Make the CTA more visible.",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "text": "The new homepage layout is approved",
+        "source_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 2,
+    "expected_items": 2,
+    "actual_items": 2,
+    "categories": {
+      "requests": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 1
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.94
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

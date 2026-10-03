@@ -1,0 +1,153 @@
+{
+  "pack_id": "feedback_compiler_public_input_pack_v1",
+  "purpose": "Runtime, schema, provenance and input-shape stress test on small attributed slices of public datasets.",
+  "gold_status": "NOT_AVAILABLE",
+  "limitations": [
+    "These datasets are proxies for workplace feedback, not Slack or private corporate email evidence.",
+    "The source annotations are not converted into Feedback Compiler gold labels.",
+    "No personal or private customer data was added by this pack; the included public text remains subject to each source's terms and provenance requirements."
+  ],
+  "cases": [
+    {
+      "case_id": "PUB-BANK-001",
+      "title": "Public support query — card delivery",
+      "input_type": "support_ticket",
+      "public_dataset": "PolyAI/banking77",
+      "dataset_license": "CC BY 4.0",
+      "source_url": "https://github.com/PolyAI-LDN/task-specific-datasets/blob/master/banking_data/train.csv",
+      "source_row": "train.csv:12",
+      "source_label": "card_arrival",
+      "feedback": [
+        {
+          "id": "PUB-BANK-001-M01",
+          "source": "Banking77 customer query",
+          "text": "Why has my new card still not come?"
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-BANK-002",
+      "title": "Public support query — disputed exchange rate",
+      "input_type": "support_ticket",
+      "public_dataset": "PolyAI/banking77",
+      "dataset_license": "CC BY 4.0",
+      "source_url": "https://github.com/PolyAI-LDN/task-specific-datasets/blob/master/banking_data/train.csv",
+      "source_row": "train.csv:538",
+      "source_label": "card_payment_wrong_exchange_rate",
+      "feedback": [
+        {
+          "id": "PUB-BANK-002-M01",
+          "source": "Banking77 customer query",
+          "text": "I think I was charged extra on my payment on last Saturday. Maybe the exchange rate was wrong? I'd like a refund."
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-BANK-003",
+      "title": "Public support query — pending cash withdrawal",
+      "input_type": "support_ticket",
+      "public_dataset": "PolyAI/banking77",
+      "dataset_license": "CC BY 4.0",
+      "source_url": "https://github.com/PolyAI-LDN/task-specific-datasets/blob/master/banking_data/train.csv",
+      "source_row": "train.csv:855",
+      "source_label": "pending_cash_withdrawal",
+      "feedback": [
+        {
+          "id": "PUB-BANK-003-M01",
+          "source": "Banking77 customer query",
+          "text": "Why does my account show as pending a cash withdrawal from the ATM that I have already made?"
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-OASST-001",
+      "title": "Public chat prompt — English action request",
+      "input_type": "chat",
+      "public_dataset": "OpenAssistant/oasst1",
+      "dataset_license": "Apache 2.0",
+      "source_url": "https://huggingface.co/datasets/OpenAssistant/oasst1",
+      "source_row": "train:row_idx=0; message_id=6ab24d72-0181-4594-a9cd-deaf170242fb",
+      "source_label": "human-generated prompt",
+      "feedback": [
+        {
+          "id": "PUB-OASST-001-M01",
+          "source": "OpenAssistant human prompt",
+          "text": "Can you write a short introduction about the relevance of the term \"monopsony\" in economics? Please use examples related to potential monopsonies in the labour market and cite relevant research."
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-OASST-002",
+      "title": "Public chat prompt — Spanish",
+      "input_type": "multilingual_chat",
+      "public_dataset": "OpenAssistant/oasst1",
+      "dataset_license": "Apache 2.0",
+      "source_url": "https://huggingface.co/datasets/OpenAssistant/oasst1",
+      "source_row": "train:row_idx=5; message_id=5249c721-e6d7-45f3-9680-f211d7be308e",
+      "source_label": "human-generated prompt",
+      "feedback": [
+        {
+          "id": "PUB-OASST-002-M01",
+          "source": "OpenAssistant human prompt",
+          "text": "¿CUales son las etapas del desarrollo y en qué consisten según Piaget?"
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-OASST-003",
+      "title": "Public chat thread — mixed language inputs",
+      "input_type": "multilingual_chat",
+      "public_dataset": "OpenAssistant/oasst1",
+      "dataset_license": "Apache 2.0",
+      "source_url": "https://huggingface.co/datasets/OpenAssistant/oasst1",
+      "source_row": "train:row_idx=5 and row_idx=16",
+      "source_label": "human-generated prompts",
+      "feedback": [
+        {
+          "id": "PUB-OASST-003-M01",
+          "source": "OpenAssistant human prompt",
+          "text": "¿CUales son las etapas del desarrollo y en qué consisten según Piaget?"
+        },
+        {
+          "id": "PUB-OASST-003-M02",
+          "source": "OpenAssistant human prompt",
+          "text": "Can you explain contrastive learning in machine learning in simple terms for someone new to the field of ML?"
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-QMSUM-001",
+      "title": "Public meeting transcript — project decisions",
+      "input_type": "transcript",
+      "public_dataset": "fladhak/qmsum",
+      "dataset_license": "MIT",
+      "source_url": "https://huggingface.co/datasets/fladhak/qmsum",
+      "source_row": "test:row_idx=89; id=89",
+      "source_label": "meeting transcript with summary/query annotations",
+      "feedback": [
+        {
+          "id": "PUB-QMSUM-001-M01",
+          "source": "QMSum meeting transcript excerpt",
+          "text": "Industrial Designer: what is the next phase?\nProject Manager: We need to describe decisions now. On the energy, we decided.\nProject Manager: The case rubber with one curve.\nIndustrial Designer: They cannot work with double-curved. I'll check it for you.\nProject Manager: The corporate identity should be in the product. You talked about it before, the colours, grey and yellow.\nProject Manager: The next phase is the design of the look and feel, the user interface design.\nProject Manager: The ID and the UID need to work together on the prototype drawing on the SMARTboard.\nIndustrial Designer: I'll do."
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-QMSUM-002",
+      "title": "Public meeting transcript — longer design discussion",
+      "input_type": "meeting_notes",
+      "public_dataset": "fladhak/qmsum",
+      "dataset_license": "MIT",
+      "source_url": "https://huggingface.co/datasets/fladhak/qmsum",
+      "source_row": "test:row_idx=89; id=89",
+      "source_label": "meeting transcript with summary/query annotations",
+      "feedback": [
+        {
+          "id": "PUB-QMSUM-002-M01",
+          "source": "QMSum meeting transcript excerpt",
+          "text": "Project Manager: The casing is curved, single-curved.\nUser Interface: What about the energy source?\nProject Manager: Traditional batteries and solar.\nUser Interface: Can they work together, or do we have to choose between them?\nProject Manager: They can be complementary.\nIndustrial Designer: The energy source is the batteries and the solar.\nProject Manager: The casing is colourful rubber, if possible with different covers, but I am not sure if our suppliers can help.\nProject Manager: The ID and the UI design need to work together on the prototype drawing.\nIndustrial Designer: We use the regular chip?\nProject Manager: Yes.\nIndustrial Designer: And we've decided not to use LCD."
+        }
+      ]
+    }
+  ]
+}

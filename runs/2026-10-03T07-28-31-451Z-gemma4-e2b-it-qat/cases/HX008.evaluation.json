@@ -1,0 +1,111 @@
+{
+  "case_id": "HX008",
+  "expected": {
+    "decisions": [
+      {
+        "source_ids": [
+          "TR-803"
+        ]
+      }
+    ],
+    "deadlines": [
+      {
+        "text": "before launch",
+        "related_source_ids": [
+          "TR-802"
+        ]
+      }
+    ],
+    "extension_note": "Timestamp and speaker should become first-class provenance fields before transcript ingestion is called production-ready."
+  },
+  "actual": {
+    "requests": [],
+    "decisions": [
+      {
+        "text": "Keep the link.",
+        "source_ids": [
+          "TR-803"
+        ]
+      }
+    ],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [
+      {
+        "text": "before launch",
+        "related_request": "Remove the second navigation link.",
+        "related_source_ids": [
+          "TR-802"
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 2,
+    "expected_items": 2,
+    "actual_items": 2,
+    "categories": {
+      "requests": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "decisions": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.7
+          }
+        ]
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 1,
+        "actual": 1,
+        "matched": 1,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 0.786
+          }
+        ]
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}

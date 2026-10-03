@@ -1,0 +1,26 @@
+{
+  "model": "gemma4:e2b-it-qat",
+  "baseUrl": "http://127.0.0.1:11434",
+  "timeoutMs": 30000,
+  "retries": 1,
+  "numCtx": 4096,
+  "temperature": 0,
+  "think": false,
+  "privacy": false,
+  "run_id": "2026-10-03T07-29-37-963Z-gemma4-e2b-it-qat",
+  "pack_file": "fixtures/public/feedback_compiler_public_input_pack_v1.json",
+  "pack_sha256": "658a865ff8d5d38cf77ceac32627eab5fc706249691aa2e7271ac5b63b291b86",
+  "schema_sha256": "b86424c90e0426a568258887d45ede7d6b0916d9cdae416b805797fee454649e",
+  "system_prompt_sha256": "0445ae22e3c8ed330696d553fe8d895c835e0007e197703a05d41caea98ece1c",
+  "cases": [
+    "PUB-BANK-001",
+    "PUB-BANK-002",
+    "PUB-BANK-003",
+    "PUB-OASST-001",
+    "PUB-OASST-002",
+    "PUB-OASST-003",
+    "PUB-QMSUM-001",
+    "PUB-QMSUM-002"
+  ],
+  "generated_at": "2026-10-03T07:30:31.114Z"
+}

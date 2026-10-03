@@ -1,0 +1,115 @@
+{
+  "case_id": "FC007",
+  "expected": {
+    "requests": [
+      {
+        "text": "Make the logo smaller on mobile",
+        "source_ids": [
+          "f1"
+        ],
+        "scope": "mobile"
+      },
+      {
+        "text": "Keep the desktop logo at its current size",
+        "source_ids": [
+          "f2"
+        ],
+        "scope": "desktop"
+      }
+    ],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": []
+  },
+  "actual": {
+    "requests": [
+      {
+        "text": "Make the logo smaller on mobile.",
+        "source_ids": [
+          "f1"
+        ],
+        "scope": "mobile"
+      },
+      {
+        "text": "Keep the desktop logo at its current size.",
+        "source_ids": [
+          "f2"
+        ],
+        "scope": "desktop"
+      }
+    ],
+    "decisions": [],
+    "conflicts": [],
+    "duplicates": [],
+    "open_questions": [],
+    "deadlines": [],
+    "notes": []
+  },
+  "schema_errors": [],
+  "provenance_errors": [],
+  "runtime_error": null,
+  "heuristic": {
+    "status": "PASS_HEURISTIC",
+    "matched": 2,
+    "expected_items": 2,
+    "actual_items": 2,
+    "categories": {
+      "requests": {
+        "expected": 2,
+        "actual": 2,
+        "matched": 2,
+        "unmatched_actual": 0,
+        "matches": [
+          {
+            "expected_index": 0,
+            "actual_index": 0,
+            "score": 1
+          },
+          {
+            "expected_index": 1,
+            "actual_index": 1,
+            "score": 1
+          }
+        ]
+      },
+      "decisions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "conflicts": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "duplicates": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "open_questions": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      },
+      "deadlines": {
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
+        "unmatched_actual": 0,
+        "matches": []
+      }
+    }
+  },
+  "semantic_review_status": "NEEDS_REVIEW"
+}
