@@ -4,6 +4,7 @@ import demoCases from "./demoCases.json";
 import heterogeneousCasebook from "../../fixtures/feedback_compiler_heterogeneous_v1.json";
 
 const MASCOT_SRC = `${import.meta.env.BASE_URL}mascot-signal-buddy.png`;
+const PUBLIC_REPO_URL = "https://github.com/MathCat0000/feedback-compiler-week1";
 
 const SAMPLE_FEEDBACK = [
   { id: "C-014", source: "Client", format: "slack_thread", text: "The hero feels too tall on mobile. Can we reduce the top padding before Friday?" },
@@ -212,6 +213,23 @@ function LinearDemo() {
     </section>
     <footer className="linear-controls"><button type="button" onClick={previous} disabled={scene === 0}>←</button><span>{String(scene + 1).padStart(2, "0")} / {String(scenes.length).padStart(2, "0")} · {scenes[scene]}</span><button type="button" aria-label="Next scene" onClick={next} disabled={scene === scenes.length - 1}>→</button></footer>
   </main>;
+}
+
+function PublicReplayNotice() {
+  return <section className="public-demo-notice page-grid" aria-labelledby="public-replay-title">
+    <div className="public-demo-notice-heading">
+      <span className="public-demo-notice-label">PUBLIC REPLAY / NO LIVE MODEL CALL</span>
+      <span className="public-demo-notice-lock">STATIC REVIEW SURFACE</span>
+    </div>
+    <h2 id="public-replay-title">This page is a replay.<br /><em>Live inference stays on your computer.</em></h2>
+    <p className="public-demo-notice-lede">The page you are viewing uses synthetic inputs and a preserved result from a local run. It never contacts Ollama. To try the actual compiler, clone the repository and run Gemma 4 locally.</p>
+    <div className="public-demo-steps" aria-label="How to run the live local version">
+      <div><span>01</span><strong>Clone the project</strong><code>git clone {PUBLIC_REPO_URL}</code><code>cd feedback-compiler-week1</code></div>
+      <div><span>02</span><strong>Install Ollama and Gemma 4</strong><code>npm install --prefix demo</code><code>npm run model:pull -- --model gemma4:e2b-it-qat</code></div>
+      <div><span>03</span><strong>Start the local workspace</strong><code>npm run app</code><small>Open http://localhost:5173/#workspace</small></div>
+    </div>
+    <div className="public-demo-notice-footer"><span>Requirements: Node.js 20+ · Ollama · first model download needs internet</span><a href={PUBLIC_REPO_URL} target="_blank" rel="noreferrer">Open repository ↗</a></div>
+  </section>;
 }
 
 function WorkspaceApp() {
@@ -446,6 +464,7 @@ function WorkspaceApp() {
       </header>
       {recordingDemo && <div className="recording-banner page-grid"><span>RECORDED DEMO</span><strong>synthetic mixed set · recorded local flow · review before handoff</strong></div>}
       {publicDemo && <div className="recording-banner public-banner page-grid"><span>PUBLIC REPLAY</span><strong>synthetic mixed set · preserved local output · no Ollama request</strong></div>}
+      {publicDemo && <PublicReplayNotice />}
 
       <main id="top">
         <section className="hero page-grid">

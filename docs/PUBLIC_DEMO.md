@@ -2,6 +2,8 @@
 
 The repository includes a public-safe replay mode for reviewers who cannot run Ollama locally.
 
+The page displays a prominent notice explaining this boundary: the online page is a static replay, while live inference requires cloning the repository, installing Ollama, downloading `gemma4:e2b-it-qat` and starting the local workspace.
+
 ## What it does
 
 Open the app with `?demo=public` to see the same product flow using:
@@ -40,6 +42,20 @@ http://localhost:4173/feedback-compiler-week1/?demo=public
 ```
 
 For a root-path local preview instead, run `npm run demo:build` without `VITE_BASE` and open `http://localhost:4173/?demo=public`.
+
+## Run the real local compiler
+
+The public replay is not the live model. To use the actual compiler:
+
+```bash
+git clone https://github.com/MathCat0000/feedback-compiler-week1.git
+cd feedback-compiler-week1
+npm install --prefix demo
+npm run model:pull -- --model gemma4:e2b-it-qat
+npm run app
+```
+
+Then open `http://localhost:5173/#workspace`. The first model download needs internet access; subsequent inference stays on the local computer through Ollama. See [Local setup](LOCAL_QUICKSTART.md) for requirements and privacy boundaries.
 
 ## Local product versus public replay
 
