@@ -475,6 +475,20 @@ body { background: var(--paper); color: var(--ink); }
 .empty-orbit { border-color: var(--mint); box-shadow: inset 0 0 0 9px rgba(13, 122, 91, 0.08), 0 0 0 11px rgba(13, 122, 91, 0.05); }
 .empty-checks { color: var(--muted); }
 
+/* Public replay: keep the disclosure readable on the light product canvas. */
+.public-demo-notice { border-color: #b9cdec; background: linear-gradient(120deg, #eef5ff, #f0f8f2); box-shadow: 10px 11px 0 rgba(21, 91, 181, 0.08); }
+.public-demo-notice-label { color: #145db5; font-weight: 700; }
+.public-demo-notice-lock { color: #0d7a5b; font-weight: 700; }
+.public-demo-notice h2 em { color: #145db5; }
+.public-demo-notice-lede { color: #3f4852; font-weight: 500; }
+.public-demo-steps > div { border-color: #d1d7dd; background: #fff; box-shadow: 0 3px 0 rgba(23, 23, 23, 0.04); }
+.public-demo-steps span { color: #145db5; font-weight: 700; }
+.public-demo-steps strong { color: #171717; font-weight: 700; }
+.public-demo-steps code { color: #086a50; font-weight: 700; }
+.public-demo-steps small { color: #3f4852; }
+.public-demo-notice-footer { border-top-color: #d1d7dd; color: #5b625e; }
+.public-demo-notice-footer a { color: #145db5; font-weight: 700; }
+
 /* The typographic character: a lowercase f that keeps the signal together. */
 .hero-character { display: flex; align-items: center; gap: 12px; min-height: 73px; margin-bottom: 16px; color: var(--muted); font: 10px var(--mono); }
 .type-mascot { position: relative; width: 66px; height: 68px; flex: 0 0 66px; }
