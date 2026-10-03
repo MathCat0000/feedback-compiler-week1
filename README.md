@@ -35,12 +35,29 @@ The repository contains only synthetic examples and carefully attributed public-
 
 - [Product guide](docs/PRODUCT_GUIDE.md)
 - [Video walkthrough](demo/recordings/feedback-compiler-demo.mov)
-- [Submission draft](docs/SUBMISSION_DRAFT.md)
 - [Privacy boundary](docs/PRIVACY.md)
 - [GitHub publishing](docs/GITHUB_PUBLISHING.md)
 - [Public session reference](https://chatgpt.com/s/cx_6ac0c10544c8819183d835ec37d20750) — read-only Codex share
 
 The video follows the same path as the app: heterogeneous input, local compilation, source-linked review, and a paste-ready handoff that still requires human approval.
+
+## How the product works
+
+Feedback Compiler turns fragmented communication into a reviewable work surface through five deliberate steps:
+
+1. **Collect.** The user brings together short messages, email, meeting notes, support tickets, multilingual chat or transcript excerpts. Each item keeps a source ID and its original shape.
+2. **Compile locally.** A compact Ollama model reads the batch on the same computer and proposes actions, decisions, conflicts, duplicates, open questions and deadlines. The model is instructed to preserve uncertainty and never treat feedback text as an instruction to change its own behavior.
+3. **Keep the evidence attached.** Every proposed item carries the source IDs that support it. Relative deadlines remain in their original wording; the system does not invent calendar dates, priorities or missing context.
+4. **Review before action.** The workspace groups the result into `Do`, `Decide`, `Clarify` and `Trace & timing`. The user can inspect, edit, accept or reject each proposal. A valid JSON response is treated as a transport contract, not as proof that the interpretation is correct.
+5. **Prepare the handoff.** The approved result can be formatted for a destination such as Slack, email, Linear, Jira or Notion. The current product stops at prepared text: it does not sign in, publish or write to those services automatically.
+
+The core loop is therefore:
+
+```text
+many input surfaces → local compilation → source-linked review → human-approved handoff
+```
+
+This boundary is the product. It makes the privacy promise concrete while keeping the person who owns the work responsible for the final interpretation.
 
 ## Run it locally
 
@@ -75,8 +92,6 @@ The final local run was contract-valid on all 30 controlled cases and all 8 hete
 - [Product guide](docs/PRODUCT_GUIDE.md) — what the product does and how a person uses it.
 - [Privacy](docs/PRIVACY.md) — the promise, the boundary and the remaining risks.
 - [Demo guide](docs/DEMO.md) — the walkthrough and its intended message.
-- [Submission draft](docs/SUBMISSION_DRAFT.md) — the complete Hacktoberfest narrative.
-- [Social posts](docs/SOCIAL_POSTS.md) — public LinkedIn and X drafts.
 - [GitHub publishing](docs/GITHUB_PUBLISHING.md) — commands to create the public remote and push `main`.
 
 The evaluation reports and research notes are retained as an evidence archive for readers who want to inspect the experiment. They are not prerequisites for understanding or using the product.
@@ -85,6 +100,8 @@ The evaluation reports and research notes are retained as an evidence archive fo
 
 This is a local vertical slice, not an autonomous project manager. The current demo expects a person to review, edit, accept or reject each proposed item. The model has not been fine-tuned on private client material. Longer, multi-speaker transcripts, retention policies and authenticated integrations require separate validation before being presented as production capabilities.
 
+The public repository contains application source, synthetic examples, attributed public-data shapes and selected evaluation evidence. It intentionally excludes machine-specific orchestration notes, raw private feedback, model weights, dependency folders, build caches, private runs and social-media copy.
+
 ## Challenge
 
-This project was created for the [Hacktoberfest Weekend Challenge: Build for a Friend](https://dev.to/challenges/hacktoberfest-weekend-2026-10-01?utm_source=chatgpt.com). The submission draft follows the challenge template and records the decisions from idea selection through prototyping, testing and local delivery.
+This project was created for the [Hacktoberfest Weekend Challenge: Build for a Friend](https://dev.to/challenges/hacktoberfest-weekend-2026-10-01?utm_source=chatgpt.com). The README and evidence documents describe the idea, product boundary, testing and local delivery without bundling publication posts into the repository.

@@ -8,7 +8,7 @@ The official page says the project must be a new build using open-source AI at i
 
 | Requirement | Current evidence | Status before publishing |
 | --- | --- | --- |
-| What I Built | `docs/SUBMISSION_DRAFT.md` | ready for factual review |
+| What I Built | `README.md` and `docs/PRODUCT_GUIDE.md` | ready for factual review |
 | Who it is for | Workflow shaped around the user's mother receiving team feedback | add consent and handoff evidence; do not claim successful use yet |
 | Demo | Local app at `http://localhost:5173` plus the verified `demo/recordings/feedback-compiler-demo.mov` | upload the video or add a public URL before publishing |
 | Code | Repository source and reproducible commands | add public repository URL |

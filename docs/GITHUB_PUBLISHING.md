@@ -47,7 +47,7 @@ git remote -v
 git status --short --branch
 ```
 
-After the push, replace `[REPO_URL]` in `docs/SOCIAL_POSTS.md` and the repository placeholder in `docs/SUBMISSION_DRAFT.md` with the real URL.
+After the push, use the repository URL in the external challenge submission or social post you publish. Publication copy is intentionally kept outside this repository.
 
 ## What is intentionally excluded
 
