@@ -11,6 +11,20 @@ It is designed for the everyday situation in which the useful information is spr
 
 The result is a human review surface. Nothing is sent to a work tool automatically.
 
+## Product visual
+
+<p align="center">
+  <img src="demo/public/mascot-signal-buddy.png" alt="Signal Buddy, the Feedback Compiler mascot" width="220" />
+</p>
+
+<p align="center"><strong>Signal Buddy</strong><br />The small review companion that guides feedback from fragments to a considered next move.</p>
+
+<p align="center">
+  <img src="demo/recordings/feedback-compiler-demo.mov.png" alt="Feedback Compiler workspace showing mixed inputs and source-linked review output" width="1100" />
+</p>
+
+The mascot is part of the product language, not a separate illustration: it marks the local compilation boundary and keeps the review experience approachable while the output stays explicit, source-linked and human-controlled.
+
 ## Why it exists
 
 I built this for my mother, who receives feedback from her team and needs to turn it into clear follow-up work without copying private material into a hosted service. The central design decision is therefore simple: the useful transformation should happen on the same computer as the person using the product.
