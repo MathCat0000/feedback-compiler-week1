@@ -10,7 +10,7 @@ The official page says the project must be a new build using open-source AI at i
 | --- | --- | --- |
 | What I Built | `README.md` and `docs/PRODUCT_GUIDE.md` | ready for factual review |
 | Who it is for | Workflow shaped around a friend receiving team feedback | add consent and handoff evidence; do not claim successful use yet |
-| Demo | Local app at `http://localhost:5173`, verified `demo/recordings/feedback-compiler-demo.mov`, and a GitHub Pages public replay workflow | publish the post only after the public replay URL is reachable; do not present it as live model inference |
+| Demo | [Public Loom walkthrough](https://www.loom.com/share/0e80929bf0f14bf6956f9e052d34ddc1), local app at `http://localhost:5173`, and a GitHub Pages public replay workflow | do not present the Loom recording or replay page as hosted model inference |
 | Code | Repository source and reproducible commands | add public repository URL |
 | Open-source AI | Ollama + local `gemma4:e2b-it-qat` run, with preserved artifacts and `npm run setup:local` | keep exact model tag and license record in final post |
 | Why open innovation matters | local inference, model swap, privacy boundary, inspectable artifacts | ready, keep claims bounded |
@@ -27,7 +27,7 @@ The challenge page lists submissions due on **October 5, 2026 at 6:59 AM UTC**, 
 
 - [ ] Confirm the repository and project were created inside the challenge window.
 - [ ] Add the final public repository URL.
-- [ ] Upload `demo/recordings/feedback-compiler-demo.mov` or add a concise public video URL.
+- [x] Add the public Loom video URL.
 - [x] Verify the video shows the current interface, not an obsolete layout.
 - [x] Include the new-user path: Ollama install → model pull → local app → compile → review.
 - [ ] Record the actual handoff to the intended person, only with consent.

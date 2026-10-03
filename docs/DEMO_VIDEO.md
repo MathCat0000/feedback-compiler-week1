@@ -1,8 +1,8 @@
 # Video walkthrough
 
-Artifact: [feedback-compiler-demo.mov](../demo/recordings/feedback-compiler-demo.mov)
+Public recording: [Watch the Feedback Compiler walkthrough on Loom](https://www.loom.com/share/0e80929bf0f14bf6956f9e052d34ddc1)
 
-The approximately 13-second silent walkthrough is captured from the rendered application itself, so the video and the live interface share one layout source. It mirrors the visible product flow:
+The 1:37 recording is captured from the local application and mirrors the visible product flow:
 
 1. the local workspace and its purpose;
 2. six heterogeneous input surfaces;
@@ -15,11 +15,4 @@ The visual treatment is the live app: warm white workspace, dark privacy boundar
 
 The recorded path holds the example result stable so the timing and layout can be reviewed consistently. The live workspace still performs the real local compilation when the person clicks `Compile locally`; the evaluation reports contain the evidence for those model runs.
 
-To regenerate the artifact after a product change:
-
-```bash
-npm run demo:dev
-npm run demo:video
-```
-
-The video is presentation material, not a claim that arbitrary production feedback will always be interpreted correctly. The experiment’s evidence is kept separately in the evaluation reports.
+The video is presentation material, not a claim that arbitrary production feedback will always be interpreted correctly. The public GitHub Pages replay is a separate synthetic walkthrough with no model call; live inference remains available only through the local setup described in [Local setup](LOCAL_QUICKSTART.md).

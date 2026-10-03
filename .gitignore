@@ -1,6 +1,7 @@
 node_modules/
 demo/dist/
 demo/node_modules/
+demo/recordings/*.mov
 scripts/.build/
 runs/private/
 .DS_Store

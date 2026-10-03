@@ -34,12 +34,12 @@ The repository contains only synthetic examples and carefully attributed public-
 ## Demo
 
 - [Product guide](docs/PRODUCT_GUIDE.md)
-- [Video walkthrough](demo/recordings/feedback-compiler-demo.mov)
+- [Video walkthrough on Loom](https://www.loom.com/share/0e80929bf0f14bf6956f9e052d34ddc1) — 1:37 local product walkthrough
 - [Public replay demo](docs/PUBLIC_DEMO.md) — static walkthrough with no model call
 - [Privacy boundary](docs/PRIVACY.md)
 - [GitHub publishing](docs/GITHUB_PUBLISHING.md)
 
-The video follows the same path as the app: heterogeneous input, local compilation, source-linked review, and a paste-ready handoff that still requires human approval.
+The Loom recording follows the same path as the app: heterogeneous input, local compilation, source-linked review, and a paste-ready handoff that still requires human approval. It shows the local workspace; it is not a hosted model demo.
 
 The public replay follows the same interface with preserved synthetic results. Reviewers can switch between the 30-case benchmark, the 8-case heterogeneous casebook and the mixed set, then click a case to load its inputs and paired structured output. It does not call Ollama or expose the local inference service. The live model remains a local-only capability.
 
@@ -85,7 +85,7 @@ The repository preserves the real local evidence behind the presentation:
 - an 8-case heterogeneous casebook;
 - a small attributed public-data input pack used to test input-shape tolerance;
 - a privacy-mode run that does not write raw input or output into per-case artifacts;
-- a local video and a runnable interface.
+- a public Loom walkthrough and a runnable interface.
 
 The final local run was contract-valid on all 30 controlled cases and all 8 heterogeneous cases. That is evidence that the workflow can produce inspectable output under the tested conditions; it is not a claim of semantic accuracy or production readiness. Manual review remains part of the product boundary.
 
