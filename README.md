@@ -14,7 +14,7 @@ The result is a human review surface. Nothing is sent to a work tool automatical
 ## Product visual
 
 <p align="center">
-  <img src="demo/public/mascot-signal-buddy.png" alt="Signal Buddy, the Feedback Compiler mascot" width="220" />
+  <img src="docs/assets/feedback-compiler-cover.png" alt="Feedback Compiler cover showing Signal Buddy guiding fragmented inputs into a structured review" width="1100" />
 </p>
 
 <p align="center"><strong>Signal Buddy</strong><br />The small review companion that guides feedback from fragments to a considered next move.</p>
